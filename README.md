@@ -1,2 +1,3 @@
 # game
-A school project for game - Batch 4
+A college project for Evolution of games - Group 4
+Interactive website.
