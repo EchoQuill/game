@@ -1,0 +1,48 @@
+name: Host to Github pages
+
+# Do this action whenever there is commit to `main` branch
+on:
+  push:
+    branches: 'main'
+
+jobs:
+  # Build static .html, .css etc files to `build/` folder.
+  build_site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build
+        env:
+          # Path to github repo
+          BASE_PATH: '/${{ github.event.repository.name }}'
+        run: bun run build
+
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'build/'
+
+  deploy:
+  # Actually host to github pages, after building the site
+    needs: build_site
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Host to Github pages
+        id: deployment
+        uses: actions/deploy-pages@v4

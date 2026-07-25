@@ -14,7 +14,8 @@ const config = {
 			assets: "dist",
 			fallback: undefined,
 			precompress: false,
-			strict: true
+			strict: true,
+			fallback: '404.html'
 		}),
 		alias: {
 			$lib: "./src/lib",
