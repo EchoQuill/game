@@ -17,6 +17,9 @@ const config = {
 			strict: true,
 			fallback: '404.html'
 		}),
+		paths: {
+			base: process.env.NODE_ENV === 'production' ? '/game' : ''
+		},
 		alias: {
 			$lib: "./src/lib",
 			"$lib/*": "./src/lib/*",
