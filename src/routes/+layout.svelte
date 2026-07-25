@@ -57,7 +57,6 @@
                 <Menu />
             </div>
             <ul
-                tabindex="0"
                 class="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-4 w-52 p-2 shadow-lg"
             >
                 {#each routes as item}
