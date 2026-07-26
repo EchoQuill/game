@@ -104,6 +104,19 @@ export class Cnf {
         await this.api("updateAvatar", { avatar: this.avatar });
     }
 
+    public logout() {
+        // Remove user from Cache
+        localStorage.setItem("username", "");
+        localStorage.setItem("password", "");
+
+        // Remove current user state (I love svelte reactivity haha)
+        this.loggedIn = false;
+        this.username = "";
+        this.password = "";
+        this.points = 0;
+        this.avatar = "newbie";
+    }
+
     private async api(action: string, payload: any = {}) {
         try {
             const res = await fetch(API_URL, {
