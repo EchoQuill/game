@@ -6,7 +6,7 @@
     import { device } from "$lib/device.svelte";
     import { userStore } from "$lib/store.svelte";
 
-    import gamepad from "$lib/assets/guess_game_icons/gamepad.png"
+    import gamepad from "$lib/assets/guess_game_icons/gamepad.png";
 
     let { children } = $props();
 
@@ -16,7 +16,12 @@
     const routes = [
         { path: "#/", label: "Home", icon: House, isSvgString: false },
         { path: "#/games", label: "Games", icon: Gamepad2, isSvgString: false },
-        { path: "https://github.com/EchoQuill/game", label: "GitHub", icon: githubSvg, isSvgString: true }
+        {
+            path: "https://github.com/EchoQuill/game",
+            label: "GitHub",
+            icon: githubSvg,
+            isSvgString: true,
+        },
     ];
 
     let currentRoute = $derived(page.url.hash || "#/");
@@ -61,19 +66,32 @@
 
             <!-- Desktop Auth Section -->
             {#if userStore.loggedIn}
-                <div class="flex items-center gap-3 bg-base-300 rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner">
-                    <div class="flex items-center gap-1 font-extrabold text-warning">
-                        <img src={userStore.coinImage} alt="Coins" class="w-5 h-5 drop-shadow-sm" />
-                        <span>{userStore.points}</span>
+                <a href="#/profile">
+                    <div
+                        class="flex items-center gap-3 bg-base-300 rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner"
+                    >
+                        <div
+                            class="flex items-center gap-1 font-extrabold text-warning"
+                        >
+                            <img
+                                src={userStore.coinImage}
+                                alt="Coins"
+                                class="w-5 h-5 drop-shadow-sm"
+                            />
+                            <span>{userStore.points}</span>
+                        </div>
+                        <img
+                            src={userStore.getCurrentAvatarImage()}
+                            alt="Avatar"
+                            class="w-8 h-8 rounded-full border-2 border-primary bg-base-100 object-cover"
+                        />
                     </div>
-                    <img 
-                        src={userStore.getCurrentAvatarImage()} 
-                        alt="Avatar" 
-                        class="w-8 h-8 rounded-full border-2 border-primary bg-base-100 object-cover" 
-                    />
-                </div>
+                </a>
             {:else}
-                <a href="#/login" class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform">
+                <a
+                    href="#/login"
+                    class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform"
+                >
                     <User size={16} /> Login
                 </a>
             {/if}
@@ -94,23 +112,39 @@
             >
                 <!-- Mobile Auth Section (At the top of the menu) -->
                 {#if userStore.loggedIn}
-                    <li class="pointer-events-none mb-2 bg-base-300 rounded-lg p-2 flex flex-row justify-between items-center border border-base-content/10">
-                        <div class="flex items-center gap-2">
-                            <img 
-                                src={userStore.getCurrentAvatarImage()} 
-                                alt="Avatar" 
-                                class="w-8 h-8 rounded-full border border-primary bg-base-100" 
-                            />
-                            <span class="font-bold">{userStore.username}</span>
-                        </div>
-                        <div class="flex items-center gap-1 font-bold text-warning">
-                            {userStore.points}
-                            <img src={userStore.coinImage} alt="Coins" class="w-4 h-4" />
-                        </div>
-                    </li>
+                    <a href="#/profile">
+                        <li
+                            class="pointer-events-none mb-2 bg-base-300 rounded-lg p-2 flex flex-row justify-between items-center border border-base-content/10"
+                        >
+                            <div class="flex items-center gap-2">
+                                <img
+                                    src={userStore.getCurrentAvatarImage()}
+                                    alt="Avatar"
+                                    class="w-8 h-8 rounded-full border border-primary bg-base-100"
+                                />
+                                <span class="font-bold"
+                                    >{userStore.username}</span
+                                >
+                            </div>
+
+                            <div
+                                class="flex items-center gap-1 font-bold text-warning"
+                            >
+                                {userStore.points}
+                                <img
+                                    src={userStore.coinImage}
+                                    alt="Coins"
+                                    class="w-4 h-4"
+                                />
+                            </div>
+                        </li>
+                    </a>
                 {:else}
                     <li class="mb-2">
-                        <a href="#/login" class="btn btn-primary btn-sm flex justify-center text-white">
+                        <a
+                            href="#/login"
+                            class="btn btn-primary btn-sm flex justify-center text-white"
+                        >
                             <User size={16} /> Log In
                         </a>
                     </li>
@@ -141,7 +175,10 @@
                 {#if userStore.loggedIn}
                     <div class="divider my-0"></div>
                     <li>
-                        <button onclick={() => userStore.logout()} class="text-error flex items-center gap-2 py-3 font-semibold">
+                        <button
+                            onclick={() => userStore.logout()}
+                            class="text-error flex items-center gap-2 py-3 font-semibold"
+                        >
                             <LogOut size={18} /> Logout
                         </button>
                     </li>
