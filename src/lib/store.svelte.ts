@@ -1,27 +1,6 @@
-// All avatars:
-import profile_newbie from "$lib/assets/shop/profile_newbie.png"
-import profile_clown from "$lib/assets/shop/profile_clown.png"
-import profile_cooler_glasses from "$lib/assets/shop/profile_cooler_glasses.png"
-import profile_cowboy from "$lib/assets/shop/profile_cowboy.png"
-import profile_fire from "$lib/assets/shop/profile_fire.png"
-import profile_glasses from "$lib/assets/shop/profile_glasses.png"
-import profile_idk from "$lib/assets/shop/profile_idk.png"
-import profile_ribbon from "$lib/assets/shop/profile_ribbon.png"
-// Shop coin
-import point_coin from "$lib/assets/shop/point_coin.png"
-
 const API_URL = "https://script.google.com/macros/s/AKfycbynLAhVYP-MJTtyOsn9U1moPBIa3xF4PAB9qCboKftj4V5SXlDrVY6z-v0Db8yXwQ/exec";
 
-export const avatarImages: Record<string, string> = {
-    newbie: profile_newbie,
-    clown: profile_clown,
-    cooler_glasses: profile_cooler_glasses,
-    cowboy: profile_cowboy,
-    fire: profile_fire,
-    glasses: profile_glasses,
-    idk: profile_idk,
-    ribbon: profile_ribbon,
-};
+import { avatarImages, coinImages } from "$lib/images"
 
 export class Shop {
     clown: boolean = false;
@@ -46,7 +25,7 @@ export class Cnf {
     inventory = $state<Shop>(new Shop());
 
     // Exported the coin image so you can use it in UI easily
-    public coinImage = point_coin; 
+    public coinImage = coinImages.point_coin; 
 
     constructor() {
         this.username = ""

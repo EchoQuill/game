@@ -2,7 +2,8 @@
     import { onMount } from "svelte";
     import { Trophy, Medal, Crown } from "lucide-svelte";
 
-    import { userStore, avatarImages } from "$lib/store.svelte";
+    import { userStore } from "$lib/store.svelte";
+    import { avatarImages } from "$lib/images"
 
     // Create an interface of json resp format
     interface LeaderboardUser {

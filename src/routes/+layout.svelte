@@ -27,7 +27,7 @@
     let currentRoute = $derived(page.url.hash || "#/");
 
     onMount(async () => {
-        document.documentElement.dataset.theme = "strawberry";
+        document.documentElement.dataset.theme = "coffee";
         await userStore.initAutoLogin();
     });
 </script>
