@@ -6,6 +6,8 @@
     import { device } from "$lib/device.svelte";
     import { userStore } from "$lib/store.svelte";
 
+    import gamepad from "$lib/assets/guess_game_icons/gamepad.png"
+
     let icon = "/site_icon.png";
 
     let { children } = $props();
@@ -29,7 +31,7 @@
     >
         <div class="flex-1 flex-nowrap flex-column">
             <a href="#/" class="btn btn-ghost text-xl font-bold"
-                ><img src={icon} alt="Site Icon" height="40" width="40" /> game</a
+                ><img src={gamepad} alt="Site Icon" height="40" width="40" /> game</a
             >
         </div>
 
