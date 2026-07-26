@@ -3,12 +3,13 @@
     import { House, Gamepad2, Menu } from "lucide-svelte";
     import { page } from "$app/state";
 	import { onMount } from "svelte";
+    import {device} from "$lib/device.svelte"
 
     let { children } = $props();
 
     const routes = [
-        { path: "#/", label: "Home", icon: House },
-        { path: "#/game", label: "Game", icon: Gamepad2 },
+        { path: "#/", label: "Game", icon: House },
+        { path: "#/login", label: "Login", icon: Gamepad2 },
     ];
 
     let currentRoute = $derived(page.url.hash || "#/");
@@ -17,7 +18,7 @@
 		// This is like a patchwork atm, we need proper fetching and cache themes user selects
 		// for that we also need to allow users to pick theme somewhere as well
 		// we could like aim for 6 themes perhaps.
-		document.documentElement.dataset.theme = "caramellatte";
+		document.documentElement.dataset.theme = "strawberry";
 	});
 </script>
 
@@ -77,7 +78,9 @@
     </nav>
 
     <!-- Page content here -->
-    <main class="flex-1 p-4">
-        {@render children()}
+    <main class="flex-1 p-4 md:p-8 flex justify-center items-start">
+        <div class="w-full {device.deviceType === 'Desktop' ? 'max-w-5xl mx-auto px-6' : ''}">
+            {@render children()}
+        </div>
     </main>
 </div>
