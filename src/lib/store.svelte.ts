@@ -17,8 +17,28 @@ export class Cnf {
     password = $state("");
     avatar = $state("");
     points = $state(0);
+    isLoaded = $state(false)
 
     inventory = $state<Shop>(new Shop());
+
+    constructor() {
+        this.username = ""
+        this.password = ""
+        this.isLoaded = false
+    }
+
+    public async initAutoLogin() {
+        const savedUser = localStorage.getItem("username");
+        const savedPass = localStorage.getItem("password");
+
+        if (savedUser && savedPass) {
+            // Use your existing async login function
+            await this.login(savedUser, savedPass);
+        }
+
+        this.isLoaded = true; // Mark loading as finished
+    }
+
 
     private itemCosts: Record<string, number> = {
         clown: 100,
@@ -62,6 +82,9 @@ export class Cnf {
                     this.inventory[key] = res.user.inventory[key];
                 }
             }
+            // Save it to cache
+            localStorage.setItem("username", this.username);
+            localStorage.setItem("password", this.password);
             return true;
         }
 

@@ -137,7 +137,7 @@
                 <button
                     type="submit"
                     class="btn btn-primary mt-2 w-full gap-2"
-                    disabled={loading}
+                    disabled={loading || !userStore.isLoaded}
                 >
                     {#if loading}
                         <span class="loading loading-spinner loading-sm"></span>

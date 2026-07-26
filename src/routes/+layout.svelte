@@ -4,7 +4,8 @@
     import { page } from "$app/state";
     import { onMount } from "svelte";
     import { device } from "$lib/device.svelte";
-    
+    import { userStore } from "$lib/store.svelte";
+
     let icon = "/site_icon.png";
 
     let { children } = $props();
@@ -18,6 +19,7 @@
 
     onMount(async () => {
         document.documentElement.dataset.theme = "strawberry";
+        await userStore.initAutoLogin()
     });
 </script>
 
@@ -26,8 +28,9 @@
         class="navbar bg-base-200/90 shrink-0 sticky top-0 z-40 w-full shadow-sm backdrop-blur-3xl px-4"
     >
         <div class="flex-1 flex-nowrap flex-column">
-            
-            <a href="#/" class="btn btn-ghost text-xl font-bold"><img src={icon} alt="Site Icon" height="40" width="40"/> game</a>
+            <a href="#/" class="btn btn-ghost text-xl font-bold"
+                ><img src={icon} alt="Site Icon" height="40" width="40" /> game</a
+            >
         </div>
 
         <div class="hidden md:flex flex-none">
@@ -77,8 +80,15 @@
         </div>
     </nav>
 
-    <main class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto">
-        <div class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType === 'Desktop' ? 'max-w-5xl mx-auto px-6' : ''}">
+    <main
+        class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto"
+    >
+        <div
+            class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType ===
+            'Desktop'
+                ? 'max-w-5xl mx-auto px-6'
+                : ''}"
+        >
             {@render children()}
         </div>
     </main>
