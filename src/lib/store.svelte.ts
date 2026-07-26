@@ -189,6 +189,15 @@ export class Cnf {
         return false;
     }
 
+    public async get_users() {
+        const res = await this.api("getUsers");
+        console.log(res)
+        if (res.status == "success") {
+            console.log(res)
+            return res.users
+        }
+    }
+
     public async purchase(item: string) {
         if (!(item in this.itemCosts)) {
             console.log(
