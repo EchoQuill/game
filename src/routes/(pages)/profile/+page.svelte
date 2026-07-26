@@ -96,6 +96,10 @@
                         </div>
                     </div>
                 {/each}
+                
+            </div>
+            <div class="flex justify-center">
+                <p>Need More? <a href="#/shop" class="text-accent">Purchase!</a></p>
             </div>
 
             {#if inventory.length === 0}
