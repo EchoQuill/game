@@ -1,5 +1,5 @@
 <script lang="ts">
-    import dancing_kitten from "$lib/assets/dancing_kitten.gif"
+    import dancing_cat from "$lib/assets/dancing_kitten.gif"
 </script>
 
 <div
@@ -15,7 +15,7 @@
             This page isn't done yet! ;(. Enjoy a dancing cat instead, while we work on redirecting you to proper page!
         </p>
     </div>
-    <div class="flex justify-center">
-        <img src={dancing_kitten} alt="Dancing cat GIF">
+    <div>
+        <img src="dancing_cat" alt="Dancing cat GIF">
     </div>
 </div>
