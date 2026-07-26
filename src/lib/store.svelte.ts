@@ -1,4 +1,4 @@
-const API_URL = "update this!";
+const API_URL = "https://script.google.com/macros/s/AKfycbynLAhVYP-MJTtyOsn9U1moPBIa3xF4PAB9qCboKftj4V5SXlDrVY6z-v0Db8yXwQ/exec";
 
 export class Shop {
     clown: boolean = false;
@@ -64,6 +64,33 @@ export class Cnf {
             }
             return true;
         }
+
+        // Reset Password if invalid
+        this.username = "";
+        this.password = "";
+        return false;
+    }
+
+    public async signup(user: string, pass: string) {
+        this.username = user;
+        this.password = pass;
+
+        const res = await this.api("signup");
+        if (res.status === "success") {
+            this.loggedIn = true;
+            this.points = res.currency;
+            this.avatar = res.avatar;
+
+            if (res.inventory) {
+                for (const key in res.inventory) {
+                    this.inventory[key] = res.inventory[key];
+                }
+            }
+
+            console.log(this.username, this.password, this.points, this.inventory)
+            return true;
+        }
+
 
         // Reset Password if invalid
         this.username = "";

@@ -2,8 +2,10 @@
     import "../app.css";
     import { House, Gamepad2, Menu } from "lucide-svelte";
     import { page } from "$app/state";
-	import { onMount } from "svelte";
-    import {device} from "$lib/device.svelte"
+    import { onMount } from "svelte";
+    import { device } from "$lib/device.svelte";
+    
+    let icon = "/site_icon.png";
 
     let { children } = $props();
 
@@ -14,20 +16,18 @@
 
     let currentRoute = $derived(page.url.hash || "#/");
 
-	onMount(async () => {
-		// This is like a patchwork atm, we need proper fetching and cache themes user selects
-		// for that we also need to allow users to pick theme somewhere as well
-		// we could like aim for 6 themes perhaps.
-		document.documentElement.dataset.theme = "strawberry";
-	});
+    onMount(async () => {
+        document.documentElement.dataset.theme = "strawberry";
+    });
 </script>
 
-<div class="min-h-screen flex flex-col">
+<div class="h-screen flex flex-col overflow-hidden">
     <nav
-        class="navbar bg-base-200/90 sticky top-0 z-40 w-full shadow-sm backdrop-blur-3xl px-4"
+        class="navbar bg-base-200/90 shrink-0 sticky top-0 z-40 w-full shadow-sm backdrop-blur-3xl px-4"
     >
-        <div class="flex-1">
-            <a href="#/" class="btn btn-ghost text-xl font-bold">game</a>
+        <div class="flex-1 flex-nowrap flex-column">
+            
+            <a href="#/" class="btn btn-ghost text-xl font-bold"><img src={icon} alt="Site Icon" height="40" width="40"/> game</a>
         </div>
 
         <div class="hidden md:flex flex-none">
@@ -77,9 +77,8 @@
         </div>
     </nav>
 
-    <!-- Page content here -->
-    <main class="flex-1 p-4 md:p-8 flex justify-center items-start">
-        <div class="w-full {device.deviceType === 'Desktop' ? 'max-w-5xl mx-auto px-6' : ''}">
+    <main class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto">
+        <div class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType === 'Desktop' ? 'max-w-5xl mx-auto px-6' : ''}">
             {@render children()}
         </div>
     </main>
