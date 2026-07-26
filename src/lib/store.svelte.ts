@@ -216,8 +216,8 @@ export class Cnf {
             );
             return;
         }
-        if (num > 250) {
-            console.log("No game should be providing more than 250P ;;");
+        if (num > 650) {
+            console.log("No game should be providing more than 650P ;;");
             return;
         }
 
