@@ -4,6 +4,7 @@
 
     import { userStore } from "$lib/store.svelte";
     import { avatarImages } from "$lib/images"
+    import {device} from "$lib/device.svelte"
 
     // Create an interface of json resp format
     interface LeaderboardUser {
@@ -100,17 +101,23 @@
                                 {/if}
                             </div>
                             <div class="text-xs text-base-content/50">
-                                Joined {new Date(user.createdAt).toLocaleDateString()}
+                                {#if device.deviceType!="Mobile"}
+                                    Joined {new Date(user.createdAt).toLocaleDateString()}
+                                {:else}
+                                    <span class="flex text-accent-content"> Points: <img src={userStore.coinImage} alt="Coins" class="w-4 h-4" /><span class="text-primary"> {user.currency}</span></span>
+                                {/if}
                             </div>
                         </div>
 
                         <!-- Coins / Currency -->
-                        <div class="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 bg-base-200 rounded-lg border border-base-content/5">
-                            <img src={userStore.coinImage} alt="Coins" class="w-5 h-5 sm:w-6 sm:h-6" />
-                            <span class="font-black text-warning text-lg sm:text-xl drop-shadow-sm">
-                                {user.currency}
-                            </span>
-                        </div>
+                        {#if device.deviceType!="Mobile"}
+                            <div class="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 bg-base-200 rounded-lg border border-base-content/5">
+                                <img src={userStore.coinImage} alt="Coins" class="w-5 h-5 sm:w-6 sm:h-6" />
+                                <span class="font-black text-warning text-lg sm:text-xl drop-shadow-sm">
+                                    {user.currency}
+                                </span>
+                            </div>
+                        {/if}
                         
                     </div>
                 {/each}
