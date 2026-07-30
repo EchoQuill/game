@@ -90,7 +90,7 @@
 <!-- Thankfully I have AI to do the styling for me, it would be a disastor if left to me.. -->
 <!-- Don't ask me what all these tailwind stuff here means, no idea! Looks like minecraft enchatment table haha -->
 <div
-    class="w-full max-w-2xl mx-auto flex flex-col gap-4 sm:gap-6 h-full p-8 px-4 sm:px-0"
+    class="w-full max-w-2xl mx-auto flex flex-col gap-4 sm:gap-6 h-full p-3 px-4 sm:px-0"
 >
     <div
         class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-base-100 p-4 sm:p-6 rounded-2xl shadow-sm border border-base-content/10"

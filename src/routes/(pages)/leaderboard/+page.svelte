@@ -35,7 +35,7 @@
 
 </script>
 
-<div class="w-full max-w-4xl mx-auto flex flex-col gap-6 h-full p-8">
+<div class="w-full max-w-4xl mx-auto flex flex-col gap-6 h-full p-3">
     <!-- Header -->
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-base-100 p-6 rounded-2xl shadow-sm border border-base-content/10">
         <div class="flex items-center gap-4">

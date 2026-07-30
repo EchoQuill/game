@@ -26,7 +26,7 @@
     }
 </script>
 
-<div class="w-full max-w-5xl mx-auto flex flex-col  overflow-y-auto gap-6 h-full p-8">
+<div class="w-full max-w-5xl mx-auto flex flex-col overflow-y-auto gap-6 h-full p-3">
     
     {#if !userStore.loggedIn}
         <div class="flex flex-col items-center justify-center h-full gap-4">
