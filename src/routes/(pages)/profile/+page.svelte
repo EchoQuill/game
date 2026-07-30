@@ -18,7 +18,7 @@
     }
 </script>
 
-<div class="w-full max-w-4xl mx-auto flex flex-col gap-8 h-full">
+<div class="w-full max-w-4xl mx-auto flex flex-col gap-8 h-full overflow-y-auto p-2">
     
     {#if !userStore.loggedIn}
         <div class="flex flex-col items-center justify-center h-full gap-4">
@@ -27,7 +27,7 @@
         </div>
     {:else}
         <!-- Profile Header Section -->
-        <div class="card bg-base-100 shadow-xl border border-base-content/10 w-full overflow-hidden">
+        <div class="card bg-base-100 shadow-xl border border-base-content/10 w-full">
             <!-- Decorative background banner -->
             <div class="h-32 bg-linear-to-r from-primary to-secondary w-full opacity-80"></div>
             
