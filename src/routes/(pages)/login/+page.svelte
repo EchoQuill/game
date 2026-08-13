@@ -31,7 +31,7 @@
                 isSignup = false; // Switch back to login view
             } else {
                 // Task: handle errors
-                successMessage = "Failed to signup, please try again later";
+                errorMessage = "Failed to signup, please try again later";
             }
             
         } else {

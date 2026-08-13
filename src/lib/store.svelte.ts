@@ -159,6 +159,8 @@ export class Cnf {
 
             console.log(this.username, this.password, this.points, this.inventory)
             return true;
+        } else if (res.status === "error") {
+            console.log("An error occured during signup: %s", res.message)
         }
 
 
