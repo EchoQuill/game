@@ -1,0 +1,1008 @@
+{
+    "easy": [
+        {
+            "id": 1,
+            "question": "What Italian plumber is Nintendo's mascot?",
+            "answer": "Mario",
+            "options": [
+                "Luigi",
+                "Wario",
+                "Donkey Kong"
+            ]
+        },
+        {
+            "id": 2,
+            "question": "What block-building sandbox game was created by Markus 'Notch' Persson?",
+            "answer": "Minecraft",
+            "options": [
+                "Terraria",
+                "Roblox",
+                "Fortnite"
+            ]
+        },
+        {
+            "id": 3,
+            "question": "What classic arcade game features a yellow character eating dots while running from ghosts?",
+            "answer": "Pac-Man",
+            "options": [
+                "Galaga",
+                "Frogger",
+                "Donkey Kong"
+            ]
+        },
+        {
+            "id": 4,
+            "question": "What is the name of the princess that Link often has to save?",
+            "answer": "Princess Zelda",
+            "options": [
+                "Princess Peach",
+                "Princess Daisy",
+                "Princess Rosalina"
+            ]
+        },
+        {
+            "id": 5,
+            "question": "Which major gaming console line is produced by Microsoft?",
+            "answer": "Xbox",
+            "options": [
+                "PlayStation",
+                "Nintendo Switch",
+                "Dreamcast"
+            ]
+        },
+        {
+            "id": 6,
+            "question": "What popular battle royale game is known for its building mechanics and in-game dances?",
+            "answer": "Fortnite",
+            "options": [
+                "Apex Legends",
+                "PUBG",
+                "Call of Duty: Warzone"
+            ]
+        },
+        {
+            "id": 7,
+            "question": "What does the acronym 'RPG' stand for in gaming?",
+            "answer": "Role-Playing Game",
+            "options": [
+                "Real Player Game",
+                "Rapid Play Genre",
+                "Role Player Generator"
+            ]
+        },
+        {
+            "id": 8,
+            "question": "In what game franchise do players catch pocket monsters in red and white balls?",
+            "answer": "Pokémon",
+            "options": [
+                "Digimon",
+                "Yo-kai Watch",
+                "Monster Hunter"
+            ]
+        },
+        {
+            "id": 9,
+            "question": "Which tech company created the PlayStation?",
+            "answer": "Sony",
+            "options": [
+                "Microsoft",
+                "Nintendo",
+                "Sega"
+            ]
+        },
+        {
+            "id": 10,
+            "question": "What shape-fitting puzzle game was created by Russian designer Alexey Pajitnov?",
+            "answer": "Tetris",
+            "options": [
+                "Dr. Mario",
+                "Puyo Puyo",
+                "Columns"
+            ]
+        },
+        {
+            "id": 11,
+            "question": "What is the highest-selling video game console of all time?",
+            "answer": "PlayStation 2",
+            "options": [
+                "Nintendo DS",
+                "PlayStation 4",
+                "Game Boy"
+            ]
+        },
+        {
+            "id": 12,
+            "question": "Sonic the Hedgehog is the official mascot for which company?",
+            "answer": "Sega",
+            "options": [
+                "Nintendo",
+                "Sony",
+                "Capcom"
+            ]
+        },
+        {
+            "id": 13,
+            "question": "What popular life simulation game franchise was created by Will Wright?",
+            "answer": "The Sims",
+            "options": [
+                "SimCity",
+                "Animal Crossing",
+                "Stardew Valley"
+            ]
+        },
+        {
+            "id": 14,
+            "question": "Which board game involves buying real estate properties like Boardwalk and Park Place?",
+            "answer": "Monopoly",
+            "options": [
+                "Risk",
+                "Clue",
+                "The Game of Life"
+            ]
+        },
+        {
+            "id": 15,
+            "question": "What card game requires players to draw cards until someone draws a detonating feline?",
+            "answer": "Exploding Kittens",
+            "options": [
+                "Uno",
+                "Cards Against Humanity",
+                "Fluxx"
+            ]
+        },
+        {
+            "id": 16,
+            "question": "What augmented reality mobile game took the world by storm in the summer of 2016?",
+            "answer": "Pokémon GO",
+            "options": [
+                "Ingress",
+                "Harry Potter: Wizards Unite",
+                "Angry Birds Go"
+            ]
+        },
+        {
+            "id": 17,
+            "question": "What is the primary objective of the crewmates in the game 'Among Us'?",
+            "answer": "Complete tasks and find the impostor(s)",
+            "options": [
+                "Defeat the final boss",
+                "Collect the most coins",
+                "Build a spaceship"
+            ]
+        },
+        {
+            "id": 18,
+            "question": "What classic tabletop word game uses letter tiles played on a 15x15 grid?",
+            "answer": "Scrabble",
+            "options": [
+                "Boggle",
+                "Bananagrams",
+                "Words With Friends"
+            ]
+        },
+        {
+            "id": 19,
+            "question": "What ancient strategy board game involves checkmating the opponent's king?",
+            "answer": "Chess",
+            "options": [
+                "Go",
+                "Shogi",
+                "Checkers"
+            ]
+        },
+        {
+            "id": 20,
+            "question": "In what action-adventure series do members of a brotherhood fight against the Templar Order?",
+            "answer": "Assassin's Creed",
+            "options": [
+                "Prince of Persia",
+                "Tomb Raider",
+                "Uncharted"
+            ]
+        },
+        {
+            "id": 21,
+            "question": "What is the name of the green-armored Spartan protagonist in the Halo series?",
+            "answer": "Master Chief",
+            "options": [
+                "Cortana",
+                "Arbiter",
+                "Captain Keyes"
+            ]
+        },
+        {
+            "id": 22,
+            "question": "Which Nintendo game lets you build a town, catch bugs, and pay off debt to a raccoon named Tom Nook?",
+            "answer": "Animal Crossing",
+            "options": [
+                "Harvest Moon",
+                "Stardew Valley",
+                "Fantasy Life"
+            ]
+        },
+        {
+            "id": 23,
+            "question": "What does 'FPS' stand for when describing a gaming genre?",
+            "answer": "First-Person Shooter",
+            "options": [
+                "Fast-Paced Strategy",
+                "First-Player Simulation",
+                "Free Play Shooter"
+            ]
+        },
+        {
+            "id": 24,
+            "question": "In Super Mario Kart, what notorious item specifically seeks out the player in first place?",
+            "answer": "The Blue Shell (Spiny Shell)",
+            "options": [
+                "Red Shell",
+                "Bob-omb",
+                "Bullet Bill"
+            ]
+        },
+        {
+            "id": 25,
+            "question": "What open-world sandbox game involves driving, heists, and exploring cities like Los Santos?",
+            "answer": "Grand Theft Auto V",
+            "options": [
+                "Watch Dogs 2",
+                "Saints Row IV",
+                "Mafia III"
+            ]
+        },
+        {
+            "id": 26,
+            "question": "What was the name of the first major cartridge-based handheld console released by Nintendo in 1989?",
+            "answer": "Game Boy",
+            "options": [
+                "Game Gear",
+                "Nintendo DS",
+                "Game Boy Advance"
+            ]
+        },
+        {
+            "id": 27,
+            "question": "What smash-hit mobile game involves matching colored sweets in combinations of three or more?",
+            "answer": "Candy Crush Saga",
+            "options": [
+                "Bejeweled",
+                "Fruit Ninja",
+                "Farm Heroes Saga"
+            ]
+        },
+        {
+            "id": 28,
+            "question": "In which game do you launch birds from a slingshot to destroy structures built by green pigs?",
+            "answer": "Angry Birds",
+            "options": [
+                "Bad Piggies",
+                "Cut the Rope",
+                "Flappy Bird"
+            ]
+        },
+        {
+            "id": 29,
+            "question": "What is the subtitle of the critically acclaimed fifth installment of The Elder Scrolls series?",
+            "answer": "Skyrim",
+            "options": [
+                "Morrowind",
+                "Oblivion",
+                "High Rock"
+            ]
+        },
+        {
+            "id": 30,
+            "question": "What popular 2D sandbox adventure game is often casually described as '2D Minecraft'?",
+            "answer": "Terraria",
+            "options": [
+                "Starbound",
+                "Don't Starve",
+                "Core Keeper"
+            ]
+        },
+        {
+            "id": 31,
+            "question": "What legendary fighting game series features characters like Ryu, Ken, and Chun-Li?",
+            "answer": "Street Fighter",
+            "options": [
+                "Tekken",
+                "Mortal Kombat",
+                "Virtua Fighter"
+            ]
+        },
+        {
+            "id": 32,
+            "question": "What classic party game involves drawing a card and guessing the word based on a teammate's quick sketch?",
+            "answer": "Pictionary",
+            "options": [
+                "Charades",
+                "Taboo",
+                "Cranium"
+            ]
+        },
+        {
+            "id": 33,
+            "question": "Which Nintendo console revolutionized the market in 2006 by heavily featuring motion controls?",
+            "answer": "Nintendo Wii",
+            "options": [
+                "Nintendo GameCube",
+                "Nintendo Switch",
+                "Wii U"
+            ]
+        },
+        {
+            "id": 34,
+            "question": "What game series involves ancient ruins, puzzles, and features protagonist Lara Croft?",
+            "answer": "Tomb Raider",
+            "options": [
+                "Uncharted",
+                "Assassin's Creed",
+                "Prince of Persia"
+            ]
+        }
+    ],
+    "medium": [
+        {
+            "id": 35,
+            "question": "What 1972 arcade game is widely considered the first commercially successful video game?",
+            "answer": "Pong",
+            "options": [
+                "Space Invaders",
+                "Computer Space",
+                "Asteroids"
+            ]
+        },
+        {
+            "id": 36,
+            "question": "Which 1993 game is widely credited with defining and popularizing the First-Person Shooter genre on PC?",
+            "answer": "DOOM",
+            "options": [
+                "Quake",
+                "Wolfenstein 3D",
+                "Duke Nukem 3D"
+            ]
+        },
+        {
+            "id": 37,
+            "question": "What was the first home video game console ever released?",
+            "answer": "Magnavox Odyssey",
+            "options": [
+                "Atari 2600",
+                "ColecoVision",
+                "Intellivision"
+            ]
+        },
+        {
+            "id": 38,
+            "question": "Which Konami game popularized the famous cheat code: Up, Up, Down, Down, Left, Right, Left, Right, B, A?",
+            "answer": "Contra",
+            "options": [
+                "Castlevania",
+                "Gradius",
+                "Metal Gear"
+            ]
+        },
+        {
+            "id": 39,
+            "question": "What is the name of the multidimensional empire that invades Earth in Half-Life 2?",
+            "answer": "The Combine",
+            "options": [
+                "The Xen",
+                "The Vortigaunts",
+                "The Resistance"
+            ]
+        },
+        {
+            "id": 40,
+            "question": "What was Sega's final home video game console before exiting the hardware market?",
+            "answer": "Dreamcast",
+            "options": [
+                "Saturn",
+                "Genesis",
+                "Master System"
+            ]
+        },
+        {
+            "id": 41,
+            "question": "Which board game released in 1995 involves building settlements, upgrading to cities, and trading resources like sheep and ore?",
+            "answer": "The Settlers of Catan (Catan)",
+            "options": [
+                "Carcassonne",
+                "Ticket to Ride",
+                "Puerto Rico"
+            ]
+        },
+        {
+            "id": 42,
+            "question": "What does 'NPC' stand for in gaming terminology?",
+            "answer": "Non-Player Character",
+            "options": [
+                "New Playable Character",
+                "Non-Playable Combat",
+                "Network Player Controller"
+            ]
+        },
+        {
+            "id": 43,
+            "question": "What popular MOBA game genre pioneer was originally created as a modification for Warcraft III?",
+            "answer": "Defense of the Ancients (DotA)",
+            "options": [
+                "League of Legends",
+                "Dota 2",
+                "Heroes of the Storm"
+            ]
+        },
+        {
+            "id": 44,
+            "question": "In what year did the infamous North American video game industry crash occur?",
+            "answer": "1983",
+            "options": [
+                "1977",
+                "1987",
+                "1991"
+            ]
+        },
+        {
+            "id": 45,
+            "question": "Which famous game designer created the Metal Gear Solid series and Death Stranding?",
+            "answer": "Hideo Kojima",
+            "options": [
+                "Shigeru Miyamoto",
+                "Hideki Kamiya",
+                "Fumito Ueda"
+            ]
+        },
+        {
+            "id": 46,
+            "question": "What Polish company developed the critically acclaimed RPG 'The Witcher 3: Wild Hunt'?",
+            "answer": "CD Projekt Red",
+            "options": [
+                "Techland",
+                "11 bit studios",
+                "People Can Fly"
+            ]
+        },
+        {
+            "id": 47,
+            "question": "What 2011 action RPG, known for its extreme difficulty, takes place in the kingdom of Lordran?",
+            "answer": "Dark Souls",
+            "options": [
+                "Demon's Souls",
+                "Bloodborne",
+                "Dark Souls II"
+            ]
+        },
+        {
+            "id": 48,
+            "question": "What was the original name of the character Mario when he debuted in the 1981 arcade game Donkey Kong?",
+            "answer": "Jumpman",
+            "options": [
+                "Mr. Video",
+                "Plumber Man",
+                "Game Guy"
+            ]
+        },
+        {
+            "id": 49,
+            "question": "Which powerful game engine, developed by Epic Games, powers Fortnite and is widely licensed across the industry?",
+            "answer": "Unreal Engine",
+            "options": [
+                "Unity",
+                "CryEngine",
+                "Source Engine"
+            ]
+        },
+        {
+            "id": 50,
+            "question": "What is the term for an early type of game played purely through reading descriptions and typing text commands?",
+            "answer": "Text Adventure / Interactive Fiction",
+            "options": [
+                "Graphic Adventure",
+                "Visual Novel",
+                "Dungeon Crawler"
+            ]
+        },
+        {
+            "id": 51,
+            "question": "What 1993 card game, designed by Richard Garfield, is considered the world's first modern trading card game?",
+            "answer": "Magic: The Gathering",
+            "options": [
+                "Yu-Gi-Oh!",
+                "Pokémon TCG",
+                "Hearthstone"
+            ]
+        },
+        {
+            "id": 52,
+            "question": "Which company developed the critically acclaimed original Crash Bandicoot games for the PlayStation?",
+            "answer": "Naughty Dog",
+            "options": [
+                "Insomniac Games",
+                "Rare",
+                "Sucker Punch"
+            ]
+        },
+        {
+            "id": 53,
+            "question": "What famous puzzle game was the first video game to be played in space by a Russian cosmonaut?",
+            "answer": "Tetris",
+            "options": [
+                "Pac-Man",
+                "Space Invaders",
+                "Asteroids"
+            ]
+        },
+        {
+            "id": 54,
+            "question": "What genre of games is characterized by permanent death (permadeath) and procedurally generated levels?",
+            "answer": "Roguelike",
+            "options": [
+                "Metroidvania",
+                "Soulslike",
+                "Dungeon Crawler"
+            ]
+        },
+        {
+            "id": 55,
+            "question": "Who composed the iconic overworld musical theme for Super Mario Bros.?",
+            "answer": "Koji Kondo",
+            "options": [
+                "Nobuo Uematsu",
+                "Yoko Shimomura",
+                "Jun Senoue"
+            ]
+        },
+        {
+            "id": 56,
+            "question": "Which fifth-generation game console successfully popularized the use of CD-ROMs instead of cartridges?",
+            "answer": "Sony PlayStation",
+            "options": [
+                "Nintendo 64",
+                "Sega Saturn",
+                "3DO"
+            ]
+        },
+        {
+            "id": 57,
+            "question": "In the game Portal, what dessert does the AI antagonist GLaDOS promise the player as a reward?",
+            "answer": "Cake",
+            "options": [
+                "Pie",
+                "Ice Cream",
+                "Chocolate"
+            ]
+        },
+        {
+            "id": 58,
+            "question": "What 1982 Disney movie famously depicted a world inside a computer and was released alongside a tie-in arcade game?",
+            "answer": "TRON",
+            "options": [
+                "The Black Hole",
+                "WarGames",
+                "Flight of the Navigator"
+            ]
+        },
+        {
+            "id": 59,
+            "question": "What historical era serves as the primary setting for Assassin's Creed II?",
+            "answer": "The Italian Renaissance",
+            "options": [
+                "The French Revolution",
+                "The Middle Ages",
+                "Ancient Rome"
+            ]
+        },
+        {
+            "id": 60,
+            "question": "What is the name of the fictional continent where BioWare's Dragon Age series takes place?",
+            "answer": "Thedas",
+            "options": [
+                "Ferelden",
+                "Azeroth",
+                "Tamriel"
+            ]
+        },
+        {
+            "id": 61,
+            "question": "What game, released in 2004 by Blizzard, dominated the MMORPG market for over a decade?",
+            "answer": "World of Warcraft",
+            "options": [
+                "Diablo II",
+                "StarCraft",
+                "Guild Wars"
+            ]
+        },
+        {
+            "id": 62,
+            "question": "Which fighting game franchise sparked public outcry in the 90s due to its graphic 'Fatalities'?",
+            "answer": "Mortal Kombat",
+            "options": [
+                "Street Fighter",
+                "Killer Instinct",
+                "Tekken"
+            ]
+        },
+        {
+            "id": 63,
+            "question": "What 1996 title is widely recognized as the first successful, fully 3D platformer game?",
+            "answer": "Super Mario 64",
+            "options": [
+                "Crash Bandicoot",
+                "Banjo-Kazooie",
+                "Sonic Adventure"
+            ]
+        },
+        {
+            "id": 64,
+            "question": "What Konami survival horror game series is famous for its dense fog, psychological themes, and Pyramid Head?",
+            "answer": "Silent Hill",
+            "options": [
+                "Resident Evil",
+                "Fatal Frame",
+                "Alone in the Dark"
+            ]
+        },
+        {
+            "id": 65,
+            "question": "What 1997 game famously featured an emotional moment where the character Aerith is killed by Sephiroth?",
+            "answer": "Final Fantasy VII",
+            "options": [
+                "Final Fantasy VI",
+                "Final Fantasy VIII",
+                "Final Fantasy X"
+            ]
+        },
+        {
+            "id": 66,
+            "question": "What cult-classic game involves rolling a highly adhesive ball to collect objects and create new stars?",
+            "answer": "Katamari Damacy",
+            "options": [
+                "LocoRoco",
+                "Chibi-Robo",
+                "Viva Piñata"
+            ]
+        },
+        {
+            "id": 67,
+            "question": "What famous tabletop RPG was first published in 1974 by Gary Gygax and Dave Arneson?",
+            "answer": "Dungeons & Dragons",
+            "options": [
+                "Pathfinder",
+                "Call of Cthulhu",
+                "RuneQuest"
+            ]
+        }
+    ],
+    "difficult": [
+        {
+            "id": 68,
+            "question": "What was the internal project codename for the Nintendo GameCube during its development?",
+            "answer": "Project Dolphin",
+            "options": [
+                "Project Revolution",
+                "Project Ultra",
+                "Project Reality"
+            ]
+        },
+        {
+            "id": 69,
+            "question": "Which ancient board game, originating in China over 2,500 years ago, involves surrounding the opponent's stones on a grid?",
+            "answer": "Go",
+            "options": [
+                "Xiangqi",
+                "Shogi",
+                "Mahjong"
+            ]
+        },
+        {
+            "id": 70,
+            "question": "What was the first home console video game to feature an internal battery backup to save the player's progress?",
+            "answer": "The Legend of Zelda (1986)",
+            "options": [
+                "Final Fantasy",
+                "Metroid",
+                "Dragon Quest"
+            ]
+        },
+        {
+            "id": 71,
+            "question": "In what year was the first ever recorded video game tournament (for the game Spacewar!) held at Stanford University?",
+            "answer": "1972",
+            "options": [
+                "1969",
+                "1975",
+                "1978"
+            ]
+        },
+        {
+            "id": 72,
+            "question": "What is the name of one of the world's oldest known board games, famously discovered in royal tombs in Mesopotamia?",
+            "answer": "The Royal Game of Ur",
+            "options": [
+                "Senet",
+                "Mehen",
+                "Mancala"
+            ]
+        },
+        {
+            "id": 73,
+            "question": "Millions of unsold cartridges of which infamous Atari 2600 game were buried in a New Mexico landfill?",
+            "answer": "E.T. the Extra-Terrestrial",
+            "options": [
+                "Pac-Man",
+                "Adventure",
+                "Pitfall!"
+            ]
+        },
+        {
+            "id": 74,
+            "question": "What is the highest possible score a player can achieve in a perfect, flawless game of the original Pac-Man?",
+            "answer": "3,333,360",
+            "options": [
+                "2,999,990",
+                "3,000,000",
+                "3,500,000"
+            ]
+        },
+        {
+            "id": 75,
+            "question": "Who is considered the 'Father of Video Games' for his role in inventing the Magnavox Odyssey?",
+            "answer": "Ralph Baer",
+            "options": [
+                "Nolan Bushnell",
+                "Shigeru Miyamoto",
+                "Alan Turing"
+            ]
+        },
+        {
+            "id": 76,
+            "question": "What stereoscopic 3D tabletop console, released in 1995, was one of Nintendo's biggest commercial hardware failures?",
+            "answer": "Virtual Boy",
+            "options": [
+                "Game Boy Color",
+                "Power Glove",
+                "Nintendo 64DD"
+            ]
+        },
+        {
+            "id": 77,
+            "question": "Which text-based multi-user game, created in 1978 by Roy Trubshaw and Richard Bartle, is considered the first MUD?",
+            "answer": "MUD1",
+            "options": [
+                "Zork",
+                "AberMUD",
+                "Ultima Online"
+            ]
+        },
+        {
+            "id": 78,
+            "question": "What 1980 arcade game is credited as the first to feature a continuous, side-scrolling background?",
+            "answer": "Defender",
+            "options": [
+                "Asteroids",
+                "Scramble",
+                "Galaga"
+            ]
+        },
+        {
+            "id": 79,
+            "question": "What was the first video game to feature synthesized human speech, released by Sun Electronics in 1980?",
+            "answer": "Stratovox",
+            "options": [
+                "Berzerk",
+                "Frogger",
+                "Galaxian"
+            ]
+        },
+        {
+            "id": 80,
+            "question": "What is widely regarded as the first hidden 'Easter Egg' in a video game, found in the Atari 2600 game Adventure?",
+            "answer": "The programmer's name (Warren Robinett)",
+            "options": [
+                "A secret level",
+                "A hidden dragon",
+                "A developer logo"
+            ]
+        },
+        {
+            "id": 81,
+            "question": "Which famous 1978 arcade game was so popular in Japan that it allegedly caused a national shortage of 100-yen coins?",
+            "answer": "Space Invaders",
+            "options": [
+                "Galaga",
+                "Asteroids",
+                "Pac-Man"
+            ]
+        },
+        {
+            "id": 82,
+            "question": "Before moving into video games, Nintendo was founded in 1889 to manufacture what physical product?",
+            "answer": "Hanafuda playing cards",
+            "options": [
+                "Mahjong tiles",
+                "Dominoes",
+                "Toy trains"
+            ]
+        },
+        {
+            "id": 83,
+            "question": "What was the first home video game console to feature a built-in internal hard disk drive?",
+            "answer": "Original Xbox",
+            "options": [
+                "PlayStation 2",
+                "Xbox 360",
+                "Sega Dreamcast"
+            ]
+        },
+        {
+            "id": 84,
+            "question": "What is the name of the sole developer who single-handedly created the massive indie hit Stardew Valley?",
+            "answer": "Eric Barone (ConcernedApe)",
+            "options": [
+                "Toby Fox",
+                "Jonathan Blow",
+                "Lucas Pope"
+            ]
+        },
+        {
+            "id": 85,
+            "question": "In the deep lore of Dark Souls, who holds the title of the 'Lord of Sunlight'?",
+            "answer": "Gwyn",
+            "options": [
+                "Artorias",
+                "Ornstein",
+                "Seath"
+            ]
+        },
+        {
+            "id": 86,
+            "question": "What seminal 1998 stealth-action game was initially developed under the title 'Metal Gear 3' for the 3DO Interactive Multiplayer?",
+            "answer": "Metal Gear Solid",
+            "options": [
+                "Metal Gear 2",
+                "Metal Gear Rising",
+                "Snatcher"
+            ]
+        },
+        {
+            "id": 87,
+            "question": "Which 1971 arcade game, created by Nolan Bushnell and Ted Dabney, was essentially a coin-operated fiberglass version of Spacewar!?",
+            "answer": "Computer Space",
+            "options": [
+                "Pong",
+                "Galaxy Game",
+                "Space Invaders"
+            ]
+        },
+        {
+            "id": 88,
+            "question": "What was the development codename for the Nintendo 64 console?",
+            "answer": "Project Reality",
+            "options": [
+                "Project Dolphin",
+                "Project Revolution",
+                "Project Ultra"
+            ]
+        },
+        {
+            "id": 89,
+            "question": "What is the highest selling game on the Super Nintendo Entertainment System (SNES)?",
+            "answer": "Super Mario World",
+            "options": [
+                "The Legend of Zelda: A Link to the Past",
+                "Donkey Kong Country",
+                "Super Metroid"
+            ]
+        },
+        {
+            "id": 90,
+            "question": "What is the name of the fictional, gibberish-sounding language spoken by the characters in The Sims?",
+            "answer": "Simlish",
+            "options": [
+                "SimSpeak",
+                "Simlisha",
+                "Simspeak"
+            ]
+        },
+        {
+            "id": 91,
+            "question": "Along with Mortal Kombat, what 1992 FMV game sparked the 1993 US Congressional hearings on video game violence?",
+            "answer": "Night Trap",
+            "options": [
+                "The 7th Guest",
+                "Phantasmagoria",
+                "Ground Zero Texas"
+            ]
+        },
+        {
+            "id": 92,
+            "question": "In the original arcade version of Donkey Kong (1981), what was the name of the female character Mario had to rescue?",
+            "answer": "Pauline",
+            "options": [
+                "Peach",
+                "Daisy",
+                "Candy Kong"
+            ]
+        },
+        {
+            "id": 93,
+            "question": "What classic PC game protagonist is officially referred to in documentation simply as 'The Marine'?",
+            "answer": "Doomguy",
+            "options": [
+                "Gordon Freeman",
+                "Duke Nukem",
+                "BJ Blazkowicz"
+            ]
+        },
+        {
+            "id": 94,
+            "question": "Which 1984 game by David Braben and Ian Bell pioneered 3D wireframe graphics and open-ended space trading?",
+            "answer": "Elite",
+            "options": [
+                "Elite Dangerous",
+                "EVE Online",
+                "Frontier: First Encounters"
+            ]
+        },
+        {
+            "id": 95,
+            "question": "What was the first successful massive multiplayer online role-playing game (MMORPG) to feature a fully 3D engine?",
+            "answer": "EverQuest",
+            "options": [
+                "Ultima Online",
+                "RuneScape",
+                "World of Warcraft"
+            ]
+        },
+        {
+            "id": 96,
+            "question": "Which famous board game was originally patented in 1904 under the name 'The Landlord's Game' by Lizzie Magie?",
+            "answer": "Monopoly",
+            "options": [
+                "Risk",
+                "Clue",
+                "The Game of Life"
+            ]
+        },
+        {
+            "id": 97,
+            "question": "What console generation is commonly associated with the leap to 32-bit and 64-bit processors, including the PS1 and N64?",
+            "answer": "The Fifth Generation",
+            "options": [
+                "The Fourth Generation",
+                "The Sixth Generation",
+                "The Third Generation"
+            ]
+        },
+        {
+            "id": 98,
+            "question": "What 2001 minimalist adventure game by Team Ico is famous for its design philosophy of 'subtracting' unnecessary elements?",
+            "answer": "Ico",
+            "options": [
+                "Shadow of the Colossus",
+                "Journey",
+                "Okami"
+            ]
+        },
+        {
+            "id": 99,
+            "question": "Who composed the legendary soundtrack for the 1994 Super Nintendo RPG, Final Fantasy VI?",
+            "answer": "Nobuo Uematsu",
+            "options": [
+                "Koji Kondo",
+                "Yoko Shimomura",
+                "Motoi Sakuraba"
+            ]
+        },
+        {
+            "id": 100,
+            "question": "Which 1999 Dreamcast game directed by Yu Suzuki was one of the most expensive video games ever produced at the time of its release?",
+            "answer": "Shenmue",
+            "options": [
+                "Crazy Taxi",
+                "Jet Set Radio",
+                "Skies of Arcadia"
+            ]
+        }
+    ]
+}

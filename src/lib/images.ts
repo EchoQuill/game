@@ -12,6 +12,8 @@ import point_coin from "$lib/assets/shop/point_coin.png"
 import tails_coin from "$lib/assets/coinflip/tails_coin.png"
 import heads_coin from "$lib/assets/coinflip/heads_coin.png"
 import spin_coin from "$lib/assets/coinflip/spin_coin.gif"
+// Grab Game
+import bomb_image from "$lib/assets/guess_game_icons/bomb.png"
 
 
 export const avatarImages: Record<string, string> = {
@@ -30,4 +32,9 @@ export const coinImages: Record<string, string> = {
     tails_coin: tails_coin,
     heads_coin: heads_coin,
     spin_coin: spin_coin
+}
+
+export const grabImages: Record<string, string> = {
+    point_coin: point_coin,
+    bomb: bomb_image,
 }
