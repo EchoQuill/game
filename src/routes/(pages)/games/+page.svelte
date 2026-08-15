@@ -11,34 +11,22 @@
 
     const games: Game[] = [
         {
+            name: "Quiz",
+            source: "#/games/quiz",
+            desc: "Quiz related to games, see what you know and learn what you don't!",
+            image: "https://placehold.co/600x400/140e0b/4ade80?text=Quiz&font=playfair-display",
+        },
+        {
+            name: "Grab Points",
+            source: "#/games/grab",
+            desc: "Grab as many points as possible. But don't be greedy, as selecting bomb will make you lose all points!",
+            image: "https://placehold.co/600x400/140e0b/f87171?text=Grab+Points&font=playfair-display",
+        },
+        {
             name: "Coinflip",
             source: "#/games/coinflip",
             desc: "Try your luck flipping a coin! If you're lucky, double your points!",
             image: "https://placehold.co/600x400/140e0b/38bdf8?text=Coinflip&font=playfair-display",
-        },
-        {
-            name: "Quiz",
-            source: "#/games/quiz",
-            desc: "Quiz related to games, see what you know and learn what you don't!",
-            image: "https://placehold.co/600x400/140e0b/4ade80?text=Quiz&font=playfair-display",
-        },
-        {
-            name: "Grab Points",
-            source: "#/games/grab",
-            desc: "Grab as many points as possible. But don't be greedy, as selecting bomb will make you lose all points!",
-            image: "https://placehold.co/600x400/140e0b/f87171?text=Grab+Points&font=playfair-display",
-        },
-        {
-            name: "Quiz",
-            source: "#/games/quiz",
-            desc: "Quiz related to games, see what you know and learn what you don't!",
-            image: "https://placehold.co/600x400/140e0b/4ade80?text=Quiz&font=playfair-display",
-        },
-        {
-            name: "Grab Points",
-            source: "#/games/grab",
-            desc: "Grab as many points as possible. But don't be greedy, as selecting bomb will make you lose all points!",
-            image: "https://placehold.co/600x400/140e0b/f87171?text=Grab+Points&font=playfair-display",
         },
     ];
 </script>
