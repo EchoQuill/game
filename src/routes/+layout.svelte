@@ -29,6 +29,100 @@
         document.documentElement.dataset.theme = "coffee";
         await userStore.initAutoLogin();
     });
+    import Particles, { particlesInit } from "@tsparticles/svelte";
+    import { loadSlim } from "@tsparticles/slim";
+
+    void particlesInit(async (engine) => {
+        await loadSlim(engine);
+    });
+
+    let isMobile = $derived(device.deviceType === 'Mobile');
+
+    /*
+        Credits: https://owobot.com
+        I stole that, cause why not! :>
+
+        Thanks Scoot!
+    */
+    let options = $derived({
+        fpsLimit: isMobile ? 20 : 30,
+        interactivity: {
+            detectsOn: "canvas",
+            events: {
+                resize: true,
+                onClick: {
+                    enable: !isMobile,
+                    mode: "push",
+                },
+            },
+            modes: {
+                push: { quantity: 2 },
+            },
+        },
+        particles: {
+            color: {
+                value: ["#7DBCEB", "#FFDA00"],
+            },
+            move: {
+                direction: "none",
+                enable: true,
+                random: true,
+                speed: isMobile ? 2 : 2.5,
+                straight: false,
+                outModes: { default: "bounce" }, // Makes them bounce off screen edges
+            },
+            collisions: {
+                enable: true,
+                mode: "bounce", // Bounces off other particles
+                overlap: { enable: true, retries: 0 },
+            },
+            rotate: {
+                animation: { enable: true, speed: 1.5, sync: false },
+            },
+            number: {
+                density: { enable: true },
+                value: isMobile ? 80 : 150,
+            },
+            shape: {
+                type: "image",
+                options: {
+                    image: [
+                        {
+                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gamepad-2.svg",
+                            width: 32,
+                            height: 32,
+                            replaceColor: true,
+                        },
+                        {
+                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/dices.svg",
+                            width: 32,
+                            height: 32,
+                            replaceColor: true, 
+                        },
+                        {
+                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chess-knight.svg",
+                            width: 32,
+                            height: 32,
+                            replaceColor: true, 
+                        },
+                        {
+                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gamepad.svg",
+                            width: 32,
+                            height: 32,
+                            replaceColor: true, 
+                        },
+                    ],
+                },
+            },
+            size: {
+                value: { min: 8, max: 12 },
+            },
+            opacity: {
+                random: true,
+                value: { min: 0.05, max: 0.5 },
+            },
+        },
+    });
 </script>
 
 <div class="h-screen flex flex-col overflow-hidden">
@@ -189,6 +283,7 @@
     <main
         class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto"
     >
+        <Particles {options} class="absolute inset-0 z-0"/>
         <div
             class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType ===
             'Desktop'

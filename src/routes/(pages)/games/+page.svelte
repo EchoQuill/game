@@ -68,7 +68,7 @@
                 href={item.source}
                 class="group bg-base-100 rounded-2xl border border-base-content/10 shadow-sm hover:shadow-xl hover:border-primary/40 transition-all duration-300 flex flex-col justify-between"
             >
-                <!-- Image Container with Badge -->
+                <!-- Image Container -->
                 <div class="relative aspect-video w-full bg-base-200">
                     <img
                         src={item.image}
