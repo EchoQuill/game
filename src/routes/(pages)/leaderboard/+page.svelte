@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { Trophy, Medal, Crown } from "lucide-svelte";
+    import { Trophy, Medal, Crown, Podium } from "@lucide/svelte";
 
     import { userStore } from "$lib/store.svelte";
     import { avatarImages } from "$lib/images"
@@ -40,7 +40,7 @@
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-base-100 p-6 rounded-2xl shadow-sm border border-base-content/10">
         <div class="flex items-center gap-4">
             <div class="p-3 bg-warning/20 text-warning rounded-xl">
-                <Trophy size={32} />
+                <Podium size={32} />
             </div>
             <div>
                 <h1 class="text-3xl sm:text-4xl font-extrabold text-base-content">Leaderboard</h1>
@@ -76,7 +76,7 @@
                             {#if isFirst}
                                 <Crown class="text-warning drop-shadow-sm" size={28} />
                             {:else if isSecond}
-                                <Medal class="text-slate-400 drop-shadow-sm" size={26} />
+                                <Trophy class="text-slate-400 drop-shadow-sm" size={26} />
                             {:else if isThird}
                                 <Medal class="text-amber-700 drop-shadow-sm" size={26} />
                             {:else}

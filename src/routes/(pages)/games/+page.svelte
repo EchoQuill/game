@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Gamepad2, ArrowRight } from "lucide-svelte";
+    import { Gamepad2, ArrowRight } from "@lucide/svelte";
 
     interface Game {
         name: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { User, Lock, ArrowRight, UserPlus, LogIn } from "lucide-svelte";
+    import { User, Lock, ArrowRight, UserPlus, LogIn } from "@lucide/svelte";
     import { userStore } from "$lib/store.svelte"; // Adjust path to your store as needed
 
     // State to toggle between Login and Signup mode

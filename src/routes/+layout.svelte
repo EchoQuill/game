@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-    import { House, User, Gamepad2, Menu, LogOut } from "lucide-svelte";
+    import { House, User, Gamepad2, Menu, LogOut } from "@lucide/svelte";
     import { page } from "$app/state";
     import { onMount } from "svelte";
     import { device } from "$lib/device.svelte";

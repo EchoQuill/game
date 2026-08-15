@@ -1,7 +1,7 @@
 <script lang="ts">
     import { userStore } from "$lib/store.svelte";
     import { coinImages } from "$lib/images";
-    import { BookOpenCheck, BrainCircuit } from "lucide-svelte";
+    import { BookOpenCheck, BrainCircuit } from "@lucide/svelte";
 
     import rawQuizJson from "$lib/assets/quiz/quiz.json";
 

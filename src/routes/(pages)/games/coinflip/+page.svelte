@@ -4,7 +4,7 @@
     */
     import { userStore } from "$lib/store.svelte";
     import { coinImages } from "$lib/images";
-    import { Coins } from "lucide-svelte";
+    import { Coins } from "@lucide/svelte";
 
     // Game states
     let betAmount = $state<number>(10);
