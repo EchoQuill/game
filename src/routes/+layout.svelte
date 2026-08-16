@@ -66,25 +66,25 @@
                 // Either the documentation is messed up, or I am stupid.. I spend HOURS trying to figure out how to color svgs ;(
                 color: {
                     value: [
-                        "#3c4d45",
-                        "#97c2a3",
-                        "#4a90e2",
-                        "#50e3c2",
-                        "#f5a623",
-                        "#f8e71c",
-                        "#e94e77",
-                        "#bd10e0",
-                        "#7ed321",
-                        "#b8e986",
-                        "#ff6f61",
-                        "#ffb347",
-                        "#6b5b95",
-                        "#feb236",
-                        "#d65076",
-                        "#9b59b6",
-                        "#009688",
-                        "#8bc34a",
-                    ],
+                        "#263830", // Dark Sage Green (formerly #3c4d45)
+                        "#2e8b57", // Sea Green (formerly #97c2a3)
+                        "#1d6ec0", // Rich Royal Blue (formerly #4a90e2)
+                        "#00a884", // Deep Cyan / Teal (formerly #50e3c2)
+                        "#d97706", // Vivid Amber (formerly #f5a623)
+                        "#ca8a04", // Dark Gold / Goldenrod (formerly #f8e71c yellow)
+                        "#d91b5c", // Deep Crimson Pink (formerly #e94e77)
+                        "#9333ea", // Vibrant Electric Purple (formerly #bd10e0)
+                        "#4d9600", // Vibrant Leaf Green (formerly #7ed321)
+                        "#498218", // Deep Lime Green (formerly #b8e986)
+                        "#e03e2e", // High-Contrast Coral (formerly #ff6f61)
+                        "#ea580c", // Deep Tangerine Orange (formerly #ffb347)
+                        "#4c3b75", // Deep Indigo Violet (formerly #6b5b95)
+                        "#c27803", // Warm Ochre (formerly #feb236)
+                        "#b91c47", // Deep Rose Red (formerly #d65076)
+                        "#7e22ce", // Purple (formerly #9b59b6)
+                        "#00695c", // Dark Teal (formerly #009688)
+                        "#558b2f", // Deep Olive Apple Green (formerly #8bc34a)
+                    ]
                 },
             },
             move: {
@@ -143,12 +143,12 @@
             },
             opacity: {
                 random: true,
-                value: { min: 0.05, max: 0.5 },
+                value: { min: 0.5, max: 0.8 },
             },
         },
     });
     onMount(async () => {
-        document.documentElement.dataset.theme = "coffee";
+        document.documentElement.dataset.theme = "caramellatte";
         await userStore.initAutoLogin();
         void particlesInit(initEngine);
     });
