@@ -144,12 +144,12 @@
             },
             opacity: {
                 random: true,
-                value: { min: 0.5, max: 0.8 },
+                value: { min: 0.3, max: 0.8 },
             },
         },
     });
     onMount(async () => {
-        document.documentElement.dataset.theme = "caramellatte";
+        document.documentElement.dataset.theme = "coffee";
         await userStore.initAutoLogin();
         await particlesInit(initEngine);
         paticlesInitialized = true;
@@ -318,7 +318,7 @@
             <Particles {options} class="absolute inset-0 z-0" />
         {/if}
         <div
-            class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType ===
+            class="card w-full h-full bg-base-300/80 justify-center items-center {device.deviceType ===
             'Desktop'
                 ? 'max-w-5xl mx-auto px-6'
                 : ''}"
