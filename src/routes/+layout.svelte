@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-    import { House, User, Gamepad2, Menu, LogOut } from "@lucide/svelte";
+    import { House, User, Gamepad2, Menu, LogOut, Trophy } from "@lucide/svelte";
     import { page } from "$app/state";
     import { onMount } from "svelte";
     import { device } from "$lib/device.svelte";
@@ -15,6 +15,7 @@
     const routes = [
         { path: "#/", label: "Home", icon: House, isSvgString: false },
         { path: "#/games", label: "Games", icon: Gamepad2, isSvgString: false },
+        { path: "#/leaderboard", label: "Leaderboard", icon: Trophy, isSvgString: false },
         {
             path: "https://github.com/EchoQuill/game",
             label: "GitHub",
@@ -26,8 +27,6 @@
     let currentRoute = $derived(page.url.hash || "#/");
     let paticlesInitialized = $state(false);
 
-    
-
     import Particles, { particlesInit } from "@tsparticles/svelte";
     import { loadSlim } from "@tsparticles/slim";
     import type { ISourceOptions } from "@tsparticles/engine";
@@ -35,7 +34,6 @@
     const initEngine = async (engine: any) => {
         await loadSlim(engine);
     };
-
 
     let isMobile = $derived(device.deviceType === "Mobile");
 
@@ -60,32 +58,32 @@
                 push: { quantity: 2 },
             },
         },
-        
+
         particles: {
             paint: {
                 // https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md
                 // Either the documentation is messed up, or I am stupid.. I spend HOURS trying to figure out how to color svgs ;(
                 color: {
                     value: [
-                        "#263830", // Dark Sage Green (formerly #3c4d45)
-                        "#2e8b57", // Sea Green (formerly #97c2a3)
-                        "#1d6ec0", // Rich Royal Blue (formerly #4a90e2)
-                        "#00a884", // Deep Cyan / Teal (formerly #50e3c2)
-                        "#d97706", // Vivid Amber (formerly #f5a623)
-                        "#ca8a04", // Dark Gold / Goldenrod (formerly #f8e71c yellow)
-                        "#d91b5c", // Deep Crimson Pink (formerly #e94e77)
-                        "#9333ea", // Vibrant Electric Purple (formerly #bd10e0)
-                        "#4d9600", // Vibrant Leaf Green (formerly #7ed321)
-                        "#498218", // Deep Lime Green (formerly #b8e986)
-                        "#e03e2e", // High-Contrast Coral (formerly #ff6f61)
-                        "#ea580c", // Deep Tangerine Orange (formerly #ffb347)
-                        "#4c3b75", // Deep Indigo Violet (formerly #6b5b95)
-                        "#c27803", // Warm Ochre (formerly #feb236)
-                        "#b91c47", // Deep Rose Red (formerly #d65076)
-                        "#7e22ce", // Purple (formerly #9b59b6)
-                        "#00695c", // Dark Teal (formerly #009688)
-                        "#558b2f", // Deep Olive Apple Green (formerly #8bc34a)
-                    ]
+                        "#263830",
+                        "#2e8b57",
+                        "#1d6ec0",
+                        "#00a884",
+                        "#d97706",
+                        "#ca8a04",
+                        "#d91b5c",
+                        "#9333ea",
+                        "#4d9600",
+                        "#498218",
+                        "#e03e2e",
+                        "#ea580c",
+                        "#4c3b75",
+                        "#c27803",
+                        "#b91c47",
+                        "#7e22ce",
+                        "#00695c",
+                        "#558b2f",
+                    ],
                 },
             },
             move: {
@@ -176,6 +174,7 @@
                             class:active={currentRoute === item.path}
                             class="flex items-center gap-2 rounded-lg tooltip tooltip-bottom"
                             data-tip={item.label}
+                            aria-label={item.label}
                         >
                             {#if item.isSvgString}
                                 {@html item.icon}
@@ -188,11 +187,14 @@
                 {/each}
             </ul>
 
-            <!-- Desktop Auth Section -->
+            <!-- Desktop Auth & Profile Dropdown -->
             {#if userStore.loggedIn}
-                <a href="#/profile">
+                <div class="dropdown dropdown-end">
                     <div
-                        class="flex items-center gap-3 bg-base-300 rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner"
+                        tabindex="0"
+                        role="button"
+                        class="flex items-center gap-3 bg-base-300 hover:bg-base-100 transition-colors rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner cursor-pointer tooltip tooltip-bottom"
+                        data-tip="Account Options"
                     >
                         <div
                             class="flex items-center gap-1 font-extrabold text-warning"
@@ -210,11 +212,30 @@
                             class="w-8 h-8 rounded-full border-2 border-primary bg-base-100 object-cover"
                         />
                     </div>
-                </a>
+                    <!-- Desktop User Dropdown Menu -->
+                    <ul
+                        class="dropdown-content menu p-2 shadow-lg bg-base-200 rounded-box w-52 mt-2 z-50 border border-base-content/10"
+                    >
+                        <li>
+                            <a href="#/profile" class="flex items-center gap-2">
+                                <User size={16} /> Profile
+                            </a>
+                        </li>
+                        <li>
+                            <button
+                                onclick={() => userStore.logout()}
+                                class="text-error flex items-center gap-2 font-semibold"
+                            >
+                                <LogOut size={16} /> Logout
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             {:else}
                 <a
                     href="#/login"
-                    class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform"
+                    class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform tooltip tooltip-bottom"
+                    data-tip="Log in to your account"
                 >
                     <User size={16} /> Login
                 </a>
@@ -232,13 +253,14 @@
                 <Menu />
             </div>
             <ul
-                class="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-4 w-56 p-2 shadow-lg"
+                class="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-4 w-56 p-2 shadow-lg border border-base-content/10"
             >
-                <!-- Mobile Auth Section (At the top of the menu) -->
+                <!-- Mobile Auth Section -->
                 {#if userStore.loggedIn}
-                    <a href="#/profile">
-                        <li
-                            class="pointer-events-none mb-2 bg-base-300 rounded-lg p-2 flex flex-row justify-between items-center border border-base-content/10"
+                    <li class="mb-2">
+                        <a
+                            href="#/profile"
+                            class="bg-base-300 rounded-lg p-2 flex flex-row justify-between items-center border border-base-content/10 active:bg-base-100"
                         >
                             <div class="flex items-center gap-2">
                                 <img
@@ -261,8 +283,8 @@
                                     class="w-4 h-4"
                                 />
                             </div>
-                        </li>
-                    </a>
+                        </a>
+                    </li>
                 {:else}
                     <li class="mb-2">
                         <a
@@ -295,7 +317,7 @@
                     </li>
                 {/each}
 
-                <!-- Currently Logout button is only added to mobile, will need to work on this later for Desktop -->
+                <!-- Mobile Logout Button -->
                 {#if userStore.loggedIn}
                     <div class="divider my-0"></div>
                     <li>
