@@ -1,10 +1,19 @@
 <script lang="ts">
     import "../app.css";
-    import { House, User, Gamepad2, Menu, LogOut, Trophy } from "@lucide/svelte";
+    import {
+        House,
+        User,
+        Gamepad2,
+        Menu,
+        LogOut,
+        Trophy,
+        Palette,
+    } from "@lucide/svelte";
     import { page } from "$app/state";
     import { onMount } from "svelte";
     import { device } from "$lib/device.svelte";
     import { userStore } from "$lib/store.svelte";
+    import { themeStore } from "$lib/theme.svelte";
 
     import gamepad from "$lib/assets/guess_game_icons/gamepad.png";
 
@@ -15,7 +24,12 @@
     const routes = [
         { path: "#/", label: "Home", icon: House, isSvgString: false },
         { path: "#/games", label: "Games", icon: Gamepad2, isSvgString: false },
-        { path: "#/leaderboard", label: "Leaderboard", icon: Trophy, isSvgString: false },
+        {
+            path: "#/leaderboard",
+            label: "Leaderboard",
+            icon: Trophy,
+            isSvgString: false,
+        },
         {
             path: "https://github.com/EchoQuill/game",
             label: "GitHub",
@@ -147,7 +161,7 @@
         },
     });
     onMount(async () => {
-        document.documentElement.dataset.theme = "coffee";
+        themeStore.initTheme();
         await userStore.initAutoLogin();
         await particlesInit(initEngine);
         paticlesInitialized = true;
@@ -158,21 +172,20 @@
     <nav
         class="navbar bg-base-200/90 shrink-0 sticky top-0 z-40 w-full shadow-sm backdrop-blur-3xl px-4"
     >
-        <div class="flex-1 flex-nowrap flex-column">
+        <div class="flex-1 flex-row flex-nowrap justify-between items-center">
             <a href="#/" class="btn btn-ghost text-xl font-bold">
                 <img src={gamepad} alt="Site Icon" height="40" width="40" /> game
             </a>
         </div>
-
         <!-- Desktop Navigation -->
         <div class="hidden md:flex flex-none items-center gap-4">
-            <ul class="menu menu-horizontal px-1 gap-2">
+            <ul class="menu menu-horizontal px-1 gap-2 items-center">
                 {#each routes as item}
                     <li>
                         <a
                             href={item.path}
                             class:active={currentRoute === item.path}
-                            class="flex items-center gap-2 rounded-lg tooltip tooltip-bottom"
+                            class="flex items-center justify-center p-2.5 rounded-lg tooltip tooltip-bottom"
                             data-tip={item.label}
                             aria-label={item.label}
                         >
@@ -185,62 +198,90 @@
                         </a>
                     </li>
                 {/each}
-            </ul>
 
-            <!-- Desktop Auth & Profile Dropdown -->
-            {#if userStore.loggedIn}
-                <div class="dropdown dropdown-end">
-                    <div
-                        tabindex="0"
-                        role="button"
-                        class="flex items-center gap-3 bg-base-300 hover:bg-base-100 transition-colors rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner cursor-pointer tooltip tooltip-bottom"
-                        data-tip="Account Options"
-                    >
-                        <div
-                            class="flex items-center gap-1 font-extrabold text-warning"
+                <!-- Wrap in <li> so it matches the navbar items in size and vertical center -->
+                <li>
+                    <div class="dropdown dropdown-end p-0">
+                        <button
+                            tabindex="0"
+                            class="flex items-center justify-center p-2.5 rounded-lg tooltip tooltip-bottom w-full h-full"
+                            aria-label="Palette options"
+                            data-tip="Palette options"
                         >
-                            <img
-                                src={userStore.coinImage}
-                                alt="Coins"
-                                class="w-5 h-5 drop-shadow-sm"
-                            />
-                            <span>{userStore.points}</span>
-                        </div>
-                        <img
-                            src={userStore.getCurrentAvatarImage()}
-                            alt="Avatar"
-                            class="w-8 h-8 rounded-full border-2 border-primary bg-base-100 object-cover"
-                        />
+                            <Palette size={18} />
+                        </button>
+                        <ul
+                            class="dropdown-content menu p-2 shadow-lg bg-base-200 rounded-box w-52 mt-2 z-50 border border-base-content/10"
+                        >
+                            {#each themeStore.allotted_themes as item}
+                            <li>
+                                <button
+                                    class="flex items-center gap-2"
+                                    onclick={() => themeStore.setTheme(item)}
+                                >
+                                    {item}
+                                </button>
+                            </li>
+                            {/each}
+                        </ul>
                     </div>
-                    <!-- Desktop User Dropdown Menu -->
-                    <ul
-                        class="dropdown-content menu p-2 shadow-lg bg-base-200 rounded-box w-52 mt-2 z-50 border border-base-content/10"
-                    >
-                        <li>
-                            <a href="#/profile" class="flex items-center gap-2">
-                                <User size={16} /> Profile
-                            </a>
-                        </li>
-                        <li>
-                            <button
-                                onclick={() => userStore.logout()}
-                                class="text-error flex items-center gap-2 font-semibold"
-                            >
-                                <LogOut size={16} /> Logout
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            {:else}
-                <a
-                    href="#/login"
-                    class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform tooltip tooltip-bottom"
-                    data-tip="Log in to your account"
-                >
-                    <User size={16} /> Login
-                </a>
-            {/if}
+                </li>
+            </ul>
         </div>
+
+        <!-- Desktop Auth & Profile Dropdown -->
+        {#if userStore.loggedIn}
+            <div class="dropdown dropdown-end">
+                <div
+                    tabindex="0"
+                    role="button"
+                    class="flex items-center gap-3 bg-base-300 hover:bg-base-100 transition-colors rounded-full py-1.5 px-3 border border-base-content/10 shadow-inner cursor-pointer tooltip tooltip-bottom"
+                    data-tip="Account Options"
+                >
+                    <div
+                        class="flex items-center gap-1 font-extrabold text-warning"
+                    >
+                        <img
+                            src={userStore.coinImage}
+                            alt="Coins"
+                            class="w-5 h-5 drop-shadow-sm"
+                        />
+                        <span>{userStore.points}</span>
+                    </div>
+                    <img
+                        src={userStore.getCurrentAvatarImage()}
+                        alt="Avatar"
+                        class="w-8 h-8 rounded-full border-2 border-primary bg-base-100 object-cover"
+                    />
+                </div>
+                <!-- Desktop User Dropdown Menu -->
+                <ul
+                    class="dropdown-content menu p-2 shadow-lg bg-base-200 rounded-box w-52 mt-2 z-50 border border-base-content/10"
+                >
+                    <li>
+                        <a href="#/profile" class="flex items-center gap-2">
+                            <User size={16} /> Profile
+                        </a>
+                    </li>
+                    <li>
+                        <button
+                            onclick={() => userStore.logout()}
+                            class="text-error flex items-center gap-2 font-semibold"
+                        >
+                            <LogOut size={16} /> Logout
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        {:else}
+            <a
+                href="#/login"
+                class="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:-translate-y-0.5 transition-transform tooltip tooltip-bottom"
+                data-tip="Log in to your account"
+            >
+                <User size={16} /> Login
+            </a>
+        {/if}
 
         <!-- Mobile Navigation Dropdown -->
         <div class="dropdown dropdown-end md:hidden flex-none">
