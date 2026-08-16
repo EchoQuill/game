@@ -25,18 +25,18 @@
 
     let currentRoute = $derived(page.url.hash || "#/");
 
-    onMount(async () => {
-        document.documentElement.dataset.theme = "coffee";
-        await userStore.initAutoLogin();
-    });
+    
+
     import Particles, { particlesInit } from "@tsparticles/svelte";
     import { loadSlim } from "@tsparticles/slim";
+    import type { ISourceOptions } from "@tsparticles/engine";
 
-    void particlesInit(async (engine) => {
+    const initEngine = async (engine: any) => {
         await loadSlim(engine);
-    });
+    };
 
-    let isMobile = $derived(device.deviceType === 'Mobile');
+
+    let isMobile = $derived(device.deviceType === "Mobile");
 
     /*
         Credits: https://owobot.com
@@ -44,7 +44,7 @@
 
         Thanks Scoot!
     */
-    let options = $derived({
+    let options: ISourceOptions = $derived({
         fpsLimit: isMobile ? 20 : 30,
         interactivity: {
             detectsOn: "canvas",
@@ -59,9 +59,33 @@
                 push: { quantity: 2 },
             },
         },
+        
         particles: {
-            color: {
-                value: ["#7DBCEB", "#FFDA00"],
+            paint: {
+                // https://github.com/tsparticles/tsparticles/blob/main/markdown/Options/Particles/Paint.md
+                // Either the documentation is messed up, or I am stupid.. I spend HOURS trying to figure out how to color svgs ;(
+                color: {
+                    value: [
+                        "#3c4d45",
+                        "#97c2a3",
+                        "#4a90e2",
+                        "#50e3c2",
+                        "#f5a623",
+                        "#f8e71c",
+                        "#e94e77",
+                        "#bd10e0",
+                        "#7ed321",
+                        "#b8e986",
+                        "#ff6f61",
+                        "#ffb347",
+                        "#6b5b95",
+                        "#feb236",
+                        "#d65076",
+                        "#9b59b6",
+                        "#009688",
+                        "#8bc34a",
+                    ],
+                },
             },
             move: {
                 direction: "none",
@@ -97,19 +121,19 @@
                             src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/dices.svg",
                             width: 32,
                             height: 32,
-                            replaceColor: true, 
+                            replaceColor: true,
                         },
                         {
                             src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chess-knight.svg",
                             width: 32,
                             height: 32,
-                            replaceColor: true, 
+                            replaceColor: true,
                         },
                         {
                             src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gamepad.svg",
                             width: 32,
                             height: 32,
-                            replaceColor: true, 
+                            replaceColor: true,
                         },
                     ],
                 },
@@ -122,6 +146,11 @@
                 value: { min: 0.05, max: 0.5 },
             },
         },
+    });
+    onMount(async () => {
+        document.documentElement.dataset.theme = "coffee";
+        await userStore.initAutoLogin();
+        void particlesInit(initEngine);
     });
 </script>
 
@@ -283,7 +312,7 @@
     <main
         class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto"
     >
-        <Particles {options} class="absolute inset-0 z-0"/>
+        <Particles {options} class="absolute inset-0 z-0" />
         <div
             class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType ===
             'Desktop'
