@@ -24,6 +24,7 @@
     ];
 
     let currentRoute = $derived(page.url.hash || "#/");
+    let paticlesInitialized = $state(false);
 
     
 
@@ -150,7 +151,8 @@
     onMount(async () => {
         document.documentElement.dataset.theme = "caramellatte";
         await userStore.initAutoLogin();
-        void particlesInit(initEngine);
+        await particlesInit(initEngine);
+        paticlesInitialized = true;
     });
 </script>
 
@@ -312,7 +314,9 @@
     <main
         class="flex-1 p-4 md:p-8 flex justify-center items-stretch overflow-y-auto"
     >
-        <Particles {options} class="absolute inset-0 z-0" />
+        {#if paticlesInitialized}
+            <Particles {options} class="absolute inset-0 z-0" />
+        {/if}
         <div
             class="card w-full h-full bg-base-300/90 justify-center items-center {device.deviceType ===
             'Desktop'
