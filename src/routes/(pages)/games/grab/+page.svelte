@@ -1,152 +1,275 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+    import { onDestroy } from 'svelte';
+    import { userStore } from '$lib/store.svelte';
+    import { coinImages, grabImages } from '$lib/images';
+    import { Bomb, Hand, Coins, Timer } from '@lucide/svelte';
 
-    import { grabImages } from '$lib/images'
+    // Game Configuration
+    const GRID_SIZE = 9;
+    const DISPLAY_DURATION_MS = 1000; // How long a bomb/coin stays up
+    const SPAWN_INTERVAL_MS = 750;     // Spawn rate
+    const MAX_CAP = 250;               // Maximum points allowed per round
+    const ROUND_TIME = 30;             // Round duration in seconds
 
-	// Game Configuration
-	const GRID_SIZE = 9;
-	const DISPLAY_DURATION_MS = 1000; // How long a bomb/coin stays up
-	const SPAWN_INTERVAL_MS = 800;    // How frequently new items spawn
+    type TileState = 'idle' | 'coin' | 'bomb';
 
-	type TileState = 'idle' | 'coin' | 'bomb';
+    interface Tile {
+        id: number;
+        state: TileState;
+        timer: ReturnType<typeof setTimeout> | null;
+    }
 
-	interface Tile {
-		id: number;
-		state: TileState;
-		timer: ReturnType<typeof setTimeout> | null;
-	}
+    // Reactive state
+    let sessionScore = $state(0);
+    let timeLeft = $state(ROUND_TIME);
+    let isPlaying = $state(false);
+    let isSaving = $state(false);
+    let resultMessage = $state<string | null>(null);
+    let lastOutcome = $state<"win" | "lose" | null>(null);
 
-	// Reactive state
-	let score = $state(0);
-	let isPlaying = $state(false);
-	let gameLoopInterval: ReturnType<typeof setInterval> | null = null;
+    let gameLoopInterval: ReturnType<typeof setInterval> | null = null;
+    let timerInterval: ReturnType<typeof setInterval> | null = null;
 
-	// Initialize 9 grid tiles
-	let tiles = $state<Tile[]>(
-		Array.from({ length: GRID_SIZE }, (_, i) => ({
-			id: i,
-			state: 'idle',
-			timer: null
-		}))
-	);
+    // Initialize 9 grid tiles
+    let tiles = $state<Tile[]>(
+        Array.from({ length: GRID_SIZE }, (_, i) => ({
+            id: i,
+            state: 'idle',
+            timer: null
+        }))
+    );
 
-	function startGame() {
-		score = 0;
-		isPlaying = true;
-		resetAllTiles();
+    function startGame() {
+        if (!userStore.loggedIn) {
+            resultMessage = "You must be logged in to play!";
+            return;
+        }
 
-		// Main game loop: Pick a random idle tile every X milliseconds
-		gameLoopInterval = setInterval(spawnRandomItem, SPAWN_INTERVAL_MS);
-	}
+        sessionScore = 0;
+        timeLeft = ROUND_TIME;
+        isPlaying = true;
+        resultMessage = null;
+        lastOutcome = null;
+        resetAllTiles();
 
-	function stopGame() {
-		isPlaying = false;
-		if (gameLoopInterval) clearInterval(gameLoopInterval);
-		resetAllTiles();
-	}
+        // Game loops
+        gameLoopInterval = setInterval(spawnRandomItem, SPAWN_INTERVAL_MS);
+        timerInterval = setInterval(tickTimer, 1000);
+    }
 
-	function resetAllTiles() {
-		tiles.forEach((tile) => {
-			if (tile.timer) clearTimeout(tile.timer);
-			tile.state = 'idle';
-			tile.timer = null;
-		});
-	}
+    function tickTimer() {
+        if (timeLeft > 1) {
+            timeLeft -= 1;
+        } else {
+            timeLeft = 0;
+            cashOut("⏱️ Time's up!");
+        }
+    }
 
-	function spawnRandomItem() {
-		// Find indexes of tiles that are currently idle
-		const idleIndexes = tiles
-			.map((t, idx) => (t.state === 'idle' ? idx : null))
-			.filter((idx): idx is number => idx !== null);
+    function stopGameLoops() {
+        if (gameLoopInterval) clearInterval(gameLoopInterval);
+        if (timerInterval) clearInterval(timerInterval);
+        gameLoopInterval = null;
+        timerInterval = null;
+    }
 
-		if (idleIndexes.length === 0) return; // Grid is full
+    function resetAllTiles() {
+        tiles.forEach((tile) => {
+            if (tile.timer) clearTimeout(tile.timer);
+            tile.state = 'idle';
+            tile.timer = null;
+        });
+    }
 
-		// Pick a random idle tile
-		const randomIndex = idleIndexes[Math.floor(Math.random() * idleIndexes.length)];
-		
-		// 30% chance to spawn a Bomb, 70% chance for a Coin
-		const isBomb = Math.random() < 0.3;
-		const newState: TileState = isBomb ? 'bomb' : 'coin';
+    function spawnRandomItem() {
+        const idleIndexes = tiles
+            .map((t, idx) => (t.state === 'idle' ? idx : null))
+            .filter((idx): idx is number => idx !== null);
 
-		// Set the tile state
-		tiles[randomIndex].state = newState;
+        if (idleIndexes.length === 0) return;
 
-		// Set a timer to automatically remove the item after 1 second if not clicked
-		tiles[randomIndex].timer = setTimeout(() => {
-			if (tiles[randomIndex]) {
-				tiles[randomIndex].state = 'idle';
-				tiles[randomIndex].timer = null;
-			}
-		}, DISPLAY_DURATION_MS);
-	}
+        const randomIndex = idleIndexes[Math.floor(Math.random() * idleIndexes.length)];
+        
+        // 35% chance to spawn a Bomb, 65% chance for a Coin
+        const isBomb = Math.random() < 0.35;
+        const newState: TileState = isBomb ? 'bomb' : 'coin';
 
-	function handleTileClick(index: number) {
-		if (!isPlaying) return;
+        tiles[randomIndex].state = newState;
 
-		const tile = tiles[index];
+        tiles[randomIndex].timer = setTimeout(() => {
+            if (tiles[randomIndex]) {
+                tiles[randomIndex].state = 'idle';
+                tiles[randomIndex].timer = null;
+            }
+        }, DISPLAY_DURATION_MS);
+    }
 
-		if (tile.state === 'idle') return; // Clicked an empty tile
+    async function handleTileClick(index: number) {
+        if (!isPlaying || isSaving) return;
 
-		// Clear the auto-expire timeout immediately on click
-		if (tile.timer) {
-			clearTimeout(tile.timer);
-			tile.timer = null;
-		}
+        const tile = tiles[index];
+        if (tile.state === 'idle') return;
 
-		if (tile.state === 'coin') {
-			score += 5;
-		} else if (tile.state === 'bomb') {
-			score = Math.max(0, score - 15); // Penalty for clicking a bomb
-		}
+        if (tile.timer) {
+            clearTimeout(tile.timer);
+            tile.timer = null;
+        }
 
-		// Reset tile back to idle instantly
-		tile.state = 'idle';
-	}
+        if (tile.state === 'coin') {
+            // Reward random points between 1 and 10
+            const randomReward = Math.floor(Math.random() * 10) + 1;
+            sessionScore = Math.min(MAX_CAP, sessionScore + randomReward);
+            tile.state = 'idle';
 
-	onDestroy(() => {
-		stopGame();
-	});
+            // Check if user hit the max cap
+            if (sessionScore >= MAX_CAP) {
+                await cashOut("🎉 You reached the maximum cap of 250 points!");
+            }
+        } else if (tile.state === 'bomb') {
+            // Hit a bomb -> Lose all session coins immediately
+            tile.state = 'idle';
+            triggerBombLoss();
+        }
+    }
+
+    function triggerBombLoss() {
+        stopGameLoops();
+        isPlaying = false;
+        resetAllTiles();
+        
+        sessionScore = 0;
+        lastOutcome = 'lose';
+        resultMessage = "💥 BOOM! You clicked a bomb and lost all accumulated points!";
+    }
+
+    async function cashOut(customMessage?: string) {
+        stopGameLoops();
+        isPlaying = false;
+        resetAllTiles();
+
+        if (sessionScore > 0) {
+            isSaving = true;
+            await userStore.add_balance(sessionScore);
+            isSaving = false;
+
+            lastOutcome = 'win';
+            resultMessage = customMessage ?? `💰 Cashed out! You added ${sessionScore} coins to your balance.`;
+        } else {
+            resultMessage = customMessage ?? "Session ended with 0 coins collected.";
+        }
+    }
+
+    onDestroy(() => {
+        stopGameLoops();
+        resetAllTiles();
+    });
 </script>
 
-<div class="flex flex-col items-center gap-6 p-6 max-w-md mx-auto">
-	<!-- Scoreboard Header -->
-	<div class="stats shadow bg-base-200 w-full text-center">
-		<div class="stat">
-			<div class="stat-title">Current Coins</div>
-			<div class="stat-value text-primary">{score}</div>
-		</div>
-	</div>
+<div class="w-full max-w-2xl mx-auto flex flex-col gap-4 sm:gap-6 h-full p-3 px-4 sm:px-0">
+    
+    <!-- Game Header Card -->
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-base-100 p-4 sm:p-6 rounded-2xl shadow-sm border border-base-content/10">
+        <div class="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
+            <div class="p-2 sm:p-3 bg-primary/20 text-primary rounded-xl shrink-0">
+                <Hand class="w-7 h-7 sm:w-8 sm:h-8" />
+            </div>
+            <div>
+                <h1 class="text-xl sm:text-3xl font-extrabold text-base-content leading-tight">Grab Points</h1>
+                <p class="text-base-content/60 text-xs sm:text-sm mt-0.5">Grab coins quickly! Avoid bombs or lose it all.</p>
+            </div>
+        </div>
 
-	<!-- 3x3 Grid Layout -->
-	<div class="grid grid-cols-3 gap-4 w-full aspect-square">
-		{#each tiles as tile, index (tile.id)}
-			<button
-				type="button"
-				onclick={() => handleTileClick(index)}
-				disabled={!isPlaying}
-				class="btn h-full w-full p-0 relative transition-transform duration-75 active:scale-95 flex items-center justify-center text-3xl select-none
-					{tile.state === 'idle' ? 'btn-neutral' : ''}
-					{tile.state === 'coin' ? 'btn-success text-success-content' : ''}
-					{tile.state === 'bomb' ? 'btn-error text-error-content animate-pulse' : ''}"
-			>
-				{#if tile.state === 'coin'}
-					<span><img src={grabImages['point_coin']} alt="point coin" class="h-4 w-4"></span>
-				{:else if tile.state === 'bomb'}
-					<!-- Swap with an <img> tag if you prefer PNG icons -->
-					<span><img src={grabImages['bomb']} alt="bomb" class="h-4 w-4"></span>
-				{/if}
-			</button>
-		{/each}
-	</div>
+        <!-- Live Wallet View -->
+        {#if userStore.loggedIn}
+            <div class="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-2 bg-base-200 px-4 py-2.5 rounded-xl border border-base-content/5 shadow-inner">
+                <span class="text-xs font-bold uppercase tracking-wider text-base-content/60">Balance</span>
+                <div class="flex items-center gap-1.5 text-lg sm:text-xl font-black text-warning">
+                    <img src={coinImages.point_coin} alt="Coins" class="w-5 h-5 sm:w-6 sm:h-6" />
+                    {userStore.points}
+                </div>
+            </div>
+        {/if}
+    </div>
 
-	<!-- Controls -->
-	{#if !isPlaying}
-		<button class="btn btn-primary btn-wide" onclick={startGame}>
-			Start Game
-		</button>
-	{:else}
-		<button class="btn btn-outline btn-error btn-wide" onclick={stopGame}>
-			End Session
-		</button>
-	{/if}
+    <!-- Main Game Arena -->
+    <div class="bg-base-100 rounded-3xl p-5 sm:p-8 border border-base-content/10 shadow-md flex flex-col items-center justify-center gap-6 relative overflow-hidden">
+        
+        <!-- Result / Outcome Alert Banner -->
+        {#if resultMessage}
+            <div class="alert shadow-lg max-w-md w-full animate-bounce duration-300 p-3 sm:p-4
+                {lastOutcome === 'win' ? 'bg-success/20 border-success text-success-content' : lastOutcome === 'lose' ? 'bg-error/20 border-error text-error-content' : 'bg-base-200'}">
+                <span class="font-bold text-center w-full text-sm sm:text-base">{resultMessage}</span>
+            </div>
+        {/if}
+
+        {#if !userStore.loggedIn}
+            <div class="flex flex-col items-center gap-3 text-center py-6">
+                <p class="text-sm sm:text-base text-base-content/70">You need to log in to play and earn coins.</p>
+                <a href="#/login" class="btn btn-primary px-8">Log In Now</a>
+            </div>
+        {:else}
+            <!-- Score & Timer Bar -->
+            <div class="grid grid-cols-2 gap-3 w-full max-w-md">
+                <div class="bg-base-200/70 p-3 rounded-2xl border border-base-content/5 flex flex-col items-center">
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-base-content/50">Round Points</span>
+                    <div class="flex items-center gap-1 text-xl sm:text-2xl font-black text-warning">
+                        <span>{sessionScore}</span>
+                        <span class="text-xs text-base-content/40 font-normal">/ {MAX_CAP}</span>
+                    </div>
+                </div>
+                <div class="bg-base-200/70 p-3 rounded-2xl border border-base-content/5 flex flex-col items-center">
+                    <span class="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-base-content/50">Time Left</span>
+                    <div class="flex items-center gap-1.5 text-xl sm:text-2xl font-black {timeLeft <= 5 ? 'text-error animate-pulse' : 'text-primary'}">
+                        <Timer class="w-5 h-5" />
+                        <span>{timeLeft}s</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3x3 Grid Layout -->
+            <div class="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-md aspect-square">
+                {#each tiles as tile, index (tile.id)}
+                    <button
+                        type="button"
+                        onclick={() => handleTileClick(index)}
+                        disabled={!isPlaying || tile.state === 'idle'}
+                        class="btn h-full w-full p-0 relative rounded-2xl border-2 transition-all duration-100 active:scale-90 flex items-center justify-center select-none overflow-hidden
+                            {tile.state === 'idle' ? 'bg-base-200/50 border-base-content/5 shadow-inner cursor-default' : ''}
+                            {tile.state === 'coin' ? 'bg-warning/20 border-warning shadow-lg scale-105' : ''}
+                            {tile.state === 'bomb' ? 'bg-error/20 border-error animate-pulse scale-105' : ''}"
+                    >
+                        {#if tile.state === 'coin'}
+                            <img src={grabImages?.point_coin || coinImages.point_coin} alt="coin" class="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md animate-bounce" />
+                        {:else if tile.state === 'bomb'}
+                            <img src={grabImages?.bomb || coinImages.point_coin} alt="bomb" class="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md" />
+                        {/if}
+                    </button>
+                {/each}
+            </div>
+
+            <!-- Controls -->
+            <div class="w-full max-w-md mt-2">
+                {#if !isPlaying}
+                    <button 
+                        class="btn btn-primary btn-lg w-full font-black text-lg sm:text-xl shadow-xl" 
+                        onclick={startGame}
+                        disabled={isSaving}
+                    >
+                        {#if isSaving}
+                            <span class="loading loading-spinner"></span> Saving Coins...
+                        {:else}
+                            Start Game
+                        {/if}
+                    </button>
+                {:else}
+                    <button 
+                        class="btn btn-success btn-lg w-full font-black text-lg sm:text-xl text-success-content shadow-xl" 
+                        onclick={() => cashOut()}
+                    >
+                        Cash Out ({sessionScore} Coins)
+                    </button>
+                {/if}
+            </div>
+        {/if}
+    </div>
 </div>
