@@ -14,6 +14,7 @@
     import { device } from "$lib/device.svelte";
     import { userStore } from "$lib/store.svelte";
     import { themeStore } from "$lib/theme.svelte";
+    import { bgItems } from "$lib/images";
 
     import gamepad from "$lib/assets/guess_game_icons/gamepad.png";
 
@@ -124,26 +125,28 @@
                 type: "image",
                 options: {
                     image: [
+                        // `?no-inline` at import makes it have the same at the end of the imported item as well
+                        // This doesn't seem like a clean fix, but hey it works!
                         {
-                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gamepad-2.svg",
+                            src: bgItems.gamepad.replaceAll("?no-inline", ""),
                             width: 32,
                             height: 32,
                             replaceColor: true,
                         },
                         {
-                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/dices.svg",
+                            src: bgItems.dice.replaceAll("?no-inline", ""),
                             width: 32,
                             height: 32,
                             replaceColor: true,
                         },
                         {
-                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chess-knight.svg",
+                            src: bgItems.chess.replaceAll("?no-inline", ""),
                             width: 32,
                             height: 32,
                             replaceColor: true,
                         },
                         {
-                            src: "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/gamepad.svg",
+                            src: bgItems.sword.replaceAll("?no-inline", ""),
                             width: 32,
                             height: 32,
                             replaceColor: true,
@@ -165,6 +168,8 @@
         await userStore.initAutoLogin();
         await particlesInit(initEngine);
         paticlesInitialized = true;
+
+        console.log("should be somewhat initlialised ", bgItems.dice)
     });
 </script>
 

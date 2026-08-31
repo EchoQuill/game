@@ -15,6 +15,18 @@ import spin_coin from "$lib/assets/coinflip/spin_coin.gif"
 // Grab Game
 import bomb_image from "$lib/assets/guess_game_icons/bomb.png"
 
+// SVG - Background
+import chess from "$lib/assets/bg_icons/chess-knight.svg?no-inline"
+import dice from "$lib/assets/bg_icons/dices.svg?no-inline"
+import gamepad from "$lib/assets/bg_icons/gamepad-2.svg?no-inline"
+import sword from "$lib/assets/bg_icons/swords.svg?no-inline"
+
+export const bgItems: Record<string, string> = {
+    chess: chess,
+    dice: dice,
+    gamepad: gamepad,
+    sword: sword,
+}
 
 export const avatarImages: Record<string, string> = {
     newbie: profile_newbie,
