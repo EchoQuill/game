@@ -50,7 +50,7 @@
     </div>
 
     <!-- Leaderboard List -->
-    <div class="bg-base-200/50 rounded-2xl p-4 sm:p-6 border border-base-content/5 flex-1 shadow-inner">
+    <div class="bg-base-200/50 rounded-2xl p-4 sm:p-6 border border-base-content/5 flex-1 shadow-inner overflow-y-scroll">
         {#if loading}
             <div class="flex flex-col items-center justify-center h-40 gap-3 text-base-content/50">
                 <span class="loading loading-spinner loading-lg text-primary"></span>
