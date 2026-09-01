@@ -3,6 +3,7 @@
     import { userStore } from '$lib/store.svelte';
     import { coinImages, grabImages } from '$lib/images';
     import { Bomb, Hand, Coins, Timer } from '@lucide/svelte';
+    import { scale } from 'svelte/transition';
 
     // Game Configuration
     const GRID_SIZE = 9;
@@ -89,8 +90,8 @@
 
         const randomIndex = idleIndexes[Math.floor(Math.random() * idleIndexes.length)];
         
-        // 35% chance to spawn a Bomb, 65% chance for a Coin
-        const isBomb = Math.random() < 0.35;
+        // 45% chance to spawn a Bomb
+        const isBomb = Math.random() < 0.45;
         const newState: TileState = isBomb ? 'bomb' : 'coin';
 
         tiles[randomIndex].state = newState;
@@ -178,7 +179,6 @@
             </div>
         </div>
 
-        <!-- Live Wallet View -->
         {#if userStore.loggedIn}
             <div class="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-2 bg-base-200 px-4 py-2.5 rounded-xl border border-base-content/5 shadow-inner">
                 <span class="text-xs font-bold uppercase tracking-wider text-base-content/60">Balance</span>
@@ -239,15 +239,34 @@
                         type="button"
                         onclick={() => handleTileClick(index)}
                         disabled={!isPlaying || tile.state === 'idle'}
-                        class="btn h-full w-full p-0 relative rounded-2xl border-2 transition-all duration-100 active:scale-90 flex items-center justify-center select-none overflow-hidden
-                            {tile.state === 'idle' ? 'bg-base-200/50 border-base-content/5 shadow-inner cursor-default' : ''}
-                            {tile.state === 'coin' ? 'bg-warning/20 border-warning shadow-lg scale-105' : ''}
-                            {tile.state === 'bomb' ? 'bg-error/20 border-error animate-pulse scale-105' : ''}"
+                        class="relative h-full w-full rounded-2xl border-2 border-b-[6px] flex items-center justify-center select-none transition-all duration-150 ease-out
+                            {tile.state === 'idle' && isPlaying
+                                ? 'bg-base-200 border-base-content/10 border-b-base-content/20 hover:bg-base-300 hover:border-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:border-b-2 cursor-pointer'
+                                : ''}
+                            {tile.state === 'idle' && !isPlaying
+                                ? 'bg-base-200/30 border-base-content/5 border-b-base-content/5 opacity-50 cursor-not-allowed'
+                                : ''}
+                            {tile.state === 'coin'
+                                ? 'bg-warning/15 border-warning/50 border-b-warning/50 cursor-default'
+                                : ''}
+                            {tile.state === 'bomb'
+                                ? 'bg-error/15 border-error/50 border-b-error/50 cursor-default'
+                                : ''}"
                     >
                         {#if tile.state === 'coin'}
-                            <img src={grabImages?.point_coin || coinImages.point_coin} alt="coin" class="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md animate-bounce" />
+                            <img
+                                in:scale={{ duration: 250, start: 0.4 }}
+                                src={grabImages?.point_coin || coinImages.point_coin}
+                                alt="coin"
+                                class="w-11 h-11 sm:w-14 sm:h-14 object-contain drop-shadow-md"
+                            />
                         {:else if tile.state === 'bomb'}
-                            <img src={grabImages?.bomb || coinImages.point_coin} alt="bomb" class="w-12 h-12 sm:w-16 sm:h-16 object-contain drop-shadow-md" />
+                            <img
+                                in:scale={{ duration: 200, start: 0.4 }}
+                                src={grabImages?.bomb || coinImages.point_coin}
+                                alt="bomb"
+                                class="tile-shake w-11 h-11 sm:w-14 sm:h-14 object-contain drop-shadow-md"
+                            />
                         {/if}
                     </button>
                 {/each}
@@ -279,3 +298,16 @@
         {/if}
     </div>
 </div>
+
+<style>
+    @keyframes tile-shake {
+        0%, 100% { transform: translateX(0) rotate(0deg); }
+        20% { transform: translateX(-3px) rotate(-4deg); }
+        40% { transform: translateX(3px) rotate(4deg); }
+        60% { transform: translateX(-2px) rotate(-2deg); }
+        80% { transform: translateX(2px) rotate(2deg); }
+    }
+    .tile-shake {
+        animation: tile-shake 0.35s ease-in-out;
+    }
+</style>
