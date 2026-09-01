@@ -19,7 +19,6 @@
         timer: ReturnType<typeof setTimeout> | null;
     }
 
-    // Reactive state
     let sessionScore = $state(0);
     let timeLeft = $state(ROUND_TIME);
     let isPlaying = $state(false);
@@ -200,6 +199,13 @@
                 {lastOutcome === 'win' ? 'bg-success/20 border-success text-success-content' : lastOutcome === 'lose' ? 'bg-error/20 border-error text-error-content' : 'bg-base-200'}">
                 <span class="font-bold text-center w-full text-sm sm:text-base">{resultMessage}</span>
             </div>
+            <button 
+                class="btn btn-primary btn-lg w-full font-black text-lg sm:text-xl shadow-xl" 
+                onclick={startGame}
+                disabled={isSaving}
+            >
+                Start New Game
+            </button>
         {/if}
 
         {#if !userStore.loggedIn}
@@ -207,7 +213,7 @@
                 <p class="text-sm sm:text-base text-base-content/70">You need to log in to play and earn coins.</p>
                 <a href="#/login" class="btn btn-primary px-8">Log In Now</a>
             </div>
-        {:else}
+        {:else if !resultMessage}
             <!-- Score & Timer Bar -->
             <div class="grid grid-cols-2 gap-3 w-full max-w-md">
                 <div class="bg-base-200/70 p-3 rounded-2xl border border-base-content/5 flex flex-col items-center">
