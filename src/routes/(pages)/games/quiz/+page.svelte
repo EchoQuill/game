@@ -169,7 +169,7 @@
         <!-- Result / Outcome Alert Banner -->
         {#if resultMessage}
             <div
-                class="alert shadow-lg max-w-md w-full animate-bounce duration-300 p-3 sm:p-4
+                class="alert shadow-lg max-w-md w-full duration-300 p-3 sm:p-4
                 {lastOutcome === 'win'
                     ? 'bg-success/20 border-success text-success-content'
                     : lastOutcome === 'lose'

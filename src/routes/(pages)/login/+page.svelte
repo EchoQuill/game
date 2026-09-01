@@ -1,9 +1,8 @@
 <script lang="ts">
     import { User, Lock, ArrowRight, UserPlus, LogIn } from "@lucide/svelte";
-    import { userStore } from "$lib/store.svelte"; // Adjust path to your store as needed
+    import { userStore } from "$lib/store.svelte";
     import { goto } from '$app/navigation';
 
-    // State to toggle between Login and Signup mode
     let isSignup = $state(false);
     let username = $state("");
     let password = $state("");
@@ -29,7 +28,7 @@
             if (success) {
                 successMessage =
                 "Account created successfully! You can now log in.";
-                isSignup = false; // Switch back to login view
+                isSignup = false;
             } else {
                 // Task: handle errors
                 errorMessage = "Failed to signup, please try again later";
@@ -41,7 +40,6 @@
                 errorMessage = "Invalid username or password.";
             } else {
                 successMessage = "Login successful!";
-                // Redirect or update view here if needed
             }
         }
         loading = false;
