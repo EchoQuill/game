@@ -31,6 +31,12 @@
     let timerInterval: ReturnType<typeof setInterval> | null = null;
 
     // Initialize 9 grid tiles
+    /*
+        There are 3 states:
+        1. `idle`: Blank box
+        2. `bomb`
+        3. `coin`
+    */
     let tiles = $state<Tile[]>(
         Array.from({ length: GRID_SIZE }, (_, i) => ({
             id: i,
@@ -58,6 +64,7 @@
     }
 
     function tickTimer() {
+        // Called every one second.
         if (timeLeft > 1) {
             timeLeft -= 1;
         } else {
@@ -142,7 +149,7 @@
         resultMessage = "💥 BOOM! You clicked a bomb and lost all accumulated points!";
     }
 
-    async function cashOut(customMessage?: string) {
+    async function cashOut(msg?: string) {
         stopGameLoops();
         isPlaying = false;
         resetAllTiles();
@@ -153,9 +160,9 @@
             isSaving = false;
 
             lastOutcome = 'win';
-            resultMessage = customMessage ?? `💰 Cashed out! You added ${sessionScore} coins to your balance.`;
+            resultMessage = msg ?? `💰 Cashed out! You added ${sessionScore} coins to your balance.`;
         } else {
-            resultMessage = customMessage ?? "Session ended with 0 coins collected.";
+            resultMessage = msg ?? "Session ended with 0 coins collected.";
         }
     }
 

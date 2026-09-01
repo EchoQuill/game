@@ -1,6 +1,7 @@
 <script lang="ts">
     import { User, Lock, ArrowRight, UserPlus, LogIn } from "@lucide/svelte";
     import { userStore } from "$lib/store.svelte"; // Adjust path to your store as needed
+    import { goto } from '$app/navigation';
 
     // State to toggle between Login and Signup mode
     let isSignup = $state(false);
@@ -45,6 +46,12 @@
         }
         loading = false;
     }
+
+    $effect(() => {
+        if (userStore.loggedIn) {
+            goto("#/games")
+        }
+    });
 </script>
 
 <div
