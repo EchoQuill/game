@@ -3,7 +3,7 @@
     import { userStore } from "$lib/store.svelte";
     import { goto } from '$app/navigation';
 
-    let isSignup = $state(false);
+    let isSignup = $state(true);
     let username = $state("");
     let password = $state("");
     let errorMessage = $state("");
